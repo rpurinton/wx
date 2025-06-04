@@ -63,8 +63,48 @@ export default async function (interaction) {
             });
             return;
         }
-        // reply with the response
-        await interaction.editReply({ content: weatherReport });
+        // reply with a Discord embed
+        const weatherIcon = weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon
+            ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
+            : null;
+        const embed = {
+            title: getMsg(locale, 'commands_weather_embed_title', `Weather Report for ${locationName}`),
+            color: 0x808080, // gray
+            description: weatherReport,
+            fields: [
+                {
+                    name: getMsg(locale, 'commands_weather_embed_temp', 'Temperature'),
+                    value: `${weatherData.main.temp}°${units}`,
+                    inline: true
+                },
+                {
+                    name: getMsg(locale, 'commands_weather_embed_feelslike', 'Feels Like'),
+                    value: `${weatherData.main.feels_like}°${units}`,
+                    inline: true
+                },
+                {
+                    name: getMsg(locale, 'commands_weather_embed_humidity', 'Humidity'),
+                    value: `${weatherData.main.humidity}%`,
+                    inline: true
+                },
+                {
+                    name: getMsg(locale, 'commands_weather_embed_condition', 'Condition'),
+                    value: weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description
+                        ? weatherData.weather[0].description
+                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
+                    inline: true
+                },
+                {
+                    name: getMsg(locale, 'commands_weather_embed_wind', 'Wind'),
+                    value: weatherData.wind && weatherData.wind.speed !== undefined
+                        ? `${weatherData.wind.speed} m/s`
+                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
+                    inline: true
+                }
+            ],
+            thumbnail: weatherIcon ? { url: weatherIcon } : undefined
+        };
+        await interaction.editReply({ embeds: [embed] });
     } catch (err) {
         log.error("Error in /weather handler", err);
         try {
