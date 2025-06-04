@@ -9,7 +9,7 @@ import { getCurrentDirname } from '../esm-filename.mjs';
  * Get latitude, longitude, and translated location name using OpenAI and locate.json prompt
  * @param {string} location
  * @param {string} locale
- * @returns {Promise<[number|null, number|null, string|null]>}
+ * @returns {Promise<[number|null, number|null, string|null, string|null]>}
  */
 export async function getLatLon(location, locale) {
     const dirname = getCurrentDirname(import.meta);
@@ -31,13 +31,13 @@ export async function getLatLon(location, locale) {
             const tool = toolCalls.find(tc => tc.type === 'function' && tc.function.name === 'getLatLon');
             if (tool) {
                 const args = JSON.parse(tool.function.arguments);
-                return [args.lat, args.lon, args.location_name];
+                return [args.lat, args.lon, args.location_name, args.units];
             }
         }
     } catch (err) {
         log.error('Failed to parse OpenAI tool call response', err);
     }
-    return [null, null, null];
+    return [null, null, null, null];
 }
 
 /**

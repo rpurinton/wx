@@ -15,6 +15,7 @@ export default async function (interaction) {
             calculatedLocale: locale
         });
         const location = interaction.options.getString('location') || null;
+        const userUnits = interaction.options.getString('units') || null;
         log.debug("Location", location);
         if (!location) {
             log.warn("No location provided for weather command");
@@ -24,9 +25,10 @@ export default async function (interaction) {
             });
             return;
         }
-        const [lat, lon, locationNameOrig] = await getLatLon(location);
+        const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
         let locationName = locationNameOrig;
-        log.debug("Location result", { lat, lon, locationName });
+        let units = userUnits || aiUnits;
+        log.debug("Location result", { lat, lon, locationName, units });
         if (!lat || !lon) {
             log.warn("Failed to get lat/lon for location", { location, lat, lon });
             await interaction.editReply({
@@ -40,7 +42,7 @@ export default async function (interaction) {
             locationName = location;
         }
         // get weather data from openweathermap (set OWM_API_KEY in .env)
-        const weatherData = await getWeatherData(lat, lon);
+        const weatherData = await getWeatherData(lat, lon, units);
         log.debug("Weather data", weatherData);
         if (!weatherData) {
             log.error("Failed to get weather data", { lat, lon });
