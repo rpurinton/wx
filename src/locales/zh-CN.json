@@ -1,3 +1,3 @@
 {
-    "help": "这是帮助文本。"
+    "help": "**Wx 机器人 – 天气帮助**\n\n获取任何城市、地区或邮政编码的当前天气。\n\n**命令**  \n`/weather <location>`\n\n**参数**  \n• `<location>` – 城市名（例如 London），地区（例如 CA）或邮政编码（例如 90210）。\n\n**自动报告**  \n运营者可以通过在配置文件中指定 `channel_id`(s)、地点和 cron 计划来配置自动报告。\n\n**示例**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

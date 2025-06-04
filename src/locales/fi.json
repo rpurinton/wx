@@ -1,3 +1,3 @@
 {
-    "help": "Tämä on ohjeteksti."
+    "help": "**Wx Bot – Sääohjeet**\n\nHanki ajankohtainen säätila mille tahansa kaupungille, alueelle tai postinumerolle.\n\n**Komento**  \n`/weather <location>`\n\n**Parametrit**  \n• `<location>` – Kaupungin nimi (esim. Helsinki), alue (esim. Uusimaa) tai postinumero (esim. 00100).\n\n**Automaattiset raportit**  \nOperaattorit voivat määrittää automaattisia raportteja määrittelemällä `channel_id`(t), sijainnit ja cron-aikataulun kokoonpanotiedostoissa.\n\n**Esimerkkejä**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

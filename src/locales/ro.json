@@ -1,3 +1,3 @@
 {
-    "help": "Aceasta este descrierea de ajutor."
+    "help": "**Wx Bot – Ajutor meteo**\n\nObține vremea actuală pentru orice oraș, regiune sau cod poștal.\n\n**Comandă**  \n`/weather <location>`\n\n**Parametri**  \n• `<location>` – Numele unui oraș (ex. Londra), regiune (ex. CA) sau cod poștal (ex. 90210).\n\n**Rapoarte automate**  \nOperatorii pot configura rapoarte automate specificând `channel_id`(uri), locație(ni) și un program cron în fișierele de configurare.\n\n**Exemple**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

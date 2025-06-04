@@ -1,3 +1,3 @@
 {
-    "help": "這是幫助文本。"
+    "help": "**Wx Bot – 天氣幫助**\n\n獲取任何城市、地區或郵遞區號的即時天氣。\n\n**指令**  \n`/weather <location>`\n\n**參數**  \n• `<location>` – 城市名稱（例如：London），地區（例如：CA），或郵遞區號（例如：90210）。\n\n**自動報告**  \n操作員可以通過在配置文件中指定 `channel_id`(s)、位置和cron排程來配置自動報告。\n\n**範例**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

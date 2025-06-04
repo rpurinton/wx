@@ -1,3 +1,3 @@
 {
-    "help": "Dit is de helptekst."
+    "help": "**Wx Bot – Weerhulp**\n\nKrijg het huidige weer voor elke stad, regio of postcode.\n\n**Command**  \n`/weather <location>`\n\n**Parameters**  \n• `<location>` – Naam van een stad (bijv. Amsterdam), regio (bijv. NB), of postcode (bijv. 1011)\n\n**Geautomatiseerde rapporten**  \nOperators kunnen geautomatiseerde rapporten configureren door `channel_id`(s), locatie(s), en een cron-schema in de configuratiebestanden op te geven.\n\n**Voorbeelden**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

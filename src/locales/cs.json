@@ -1,3 +1,3 @@
 {
-    "help": "Ez a súgószöveg."
+    "help": "**Wx Bot – Pomoc s počasím**\n\nZískejte aktuální počasí pro jakékoli město, region nebo PSČ.\n\n**Příkaz**  \n`/weather <location>`\n\n**Parametry**  \n• `<location>` – Název města (např. Londýn), regionu (např. CA) nebo PSČ (např. 90210).\n\n**Automatické zprávy**  \nOperátoři mohou nastavit automatické zprávy zadáním `channel_id`(ů), lokací a cron plánu do konfiguračních souborů.\n\n**Příklady**  \n```md\n/weather Tokio\n/weather New York\n/weather 10001\n```"
 }

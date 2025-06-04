@@ -1,3 +1,3 @@
 {
-    "help": "Detta är hjälpinformationen."
+    "help": "**Wx Bot – Väderhjälp**\n\nFå aktuell väderinformation för vilken stad, region eller postnummer som helst.\n\n**Kommando**  \n`/weather <location>`\n\n**Parametrar**  \n• `<location>` – Namnet på en stad (t.ex. London), region (t.ex. CA) eller postnummer (t.ex. 90210).\n\n**Automatiska rapporter**  \nOperatörer kan konfigurera automatiska rapporter genom att specificera `channel_id`(s), plats(er) och ett cron-schema i konfigurationsfilerna.\n\n**Exempel**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

@@ -1,3 +1,3 @@
 {
-    "help": "Tai yra pagalbos tekstas."
+    "help": "**Wx Bot – Orų pagalba**\n\nGaukite dabartinį orų prognozę bet kuriam miestui, regionui arba pašto kodui.\n\n**Komanda**  \n`/weather <location>`\n\n**Parametrai**  \n• `<location>` – Miesto pavadinimas (pvz., Londonas), regionas (pvz., CA) arba pašto kodas (pvz., 90210).\n\n**Automatiniai pranešimai**  \nOperatoriai gali sukonfigūruoti automatinį pranešimų siuntimą nurodydami `channel_id`(us), vietą(-as) ir cron tvarkaraštį konfigūracijos failuose.\n\n**Pavyzdžiai**  \n```md\n/weather Tokijas\n/weather Niujorkas\n/weather 10001\n```"
 }

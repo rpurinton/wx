@@ -1,3 +1,3 @@
 {
-    "help": "これはヘルプテキストです。"
+    "help": "**Wx Bot – 天気のヘルプ**\n\n任意の都市、地域、または郵便番号の現在の天気を取得します。\n\n**コマンド**  \n`/weather <location>`\n\n**パラメータ**  \n• `<location>` – 都市名（例：London）、地域名（例：CA）、または郵便番号（例：90210）。\n\n**自動レポート**  \nオペレーターは設定ファイルで `channel_id`(複数可)、場所、cronスケジュールを指定して自動レポートを設定できます。\n\n**例**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

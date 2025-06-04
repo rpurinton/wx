@@ -1,3 +1,3 @@
 {
-    "help": "To jest tekst pomocy."
+    "help": "**Wx Bot – Pomoc pogodowa**\n\nUzyskaj aktualną pogodę dla dowolnego miasta, regionu lub kodu pocztowego.\n\n**Polecenie**  \n`/weather <lokalizacja>`\n\n**Parametry**  \n• `<lokalizacja>` – Nazwa miasta (np. Londyn), regionu (np. CA) lub kodu pocztowego (np. 90210).\n\n**Automatyczne raporty**  \nOperatorzy mogą konfigurować automatyczne raporty, określając `channel_id`(y), lokalizację(e) oraz harmonogram cron w plikach konfiguracyjnych.\n\n**Przykłady**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

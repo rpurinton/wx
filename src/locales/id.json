@@ -1,3 +1,3 @@
 {
-    "help": "Ini adalah teks bantuan."
+    "help": "**Wx Bot – Bantuan Cuaca**\n\nDapatkan cuaca terkini untuk kota, wilayah, atau kode pos/postal apa pun.\n\n**Perintah**  \n`/weather <location>`\n\n**Parameter**  \n• `<location>` – Nama kota (misalnya London), wilayah (misalnya CA), atau kode pos (misalnya 90210).\n\n**Laporan Otomatis**  \nOperator dapat mengonfigurasi laporan otomatis dengan menentukan `channel_id`(s), lokasi, dan jadwal cron di file konfigurasi.\n\n**Contoh**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }

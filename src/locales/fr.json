@@ -1,3 +1,3 @@
 {
-    "help": "Ceci est le texte d'aide."
+    "help": "**Wx Bot – Aide Météo**\n\nObtenez la météo actuelle pour n'importe quelle ville, région ou code postal.\n\n**Commande**  \n`/weather <location>`\n\n**Paramètres**  \n• `<location>` – Nom d'une ville (ex. Paris), région (ex. IDF), ou code postal (ex. 75001).\n\n**Rapports Automatisés**  \nLes opérateurs peuvent configurer des rapports automatisés en spécifiant `channel_id`(s), localisation(s), et un calendrier cron dans les fichiers de configuration.\n\n**Exemples**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
 }
