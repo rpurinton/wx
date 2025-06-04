@@ -1,3 +1,13 @@
 {
-    "help": "**Wx बॉट – मौसम मदद**\n\nकिसी भी शहर, क्षेत्र या ZIP/डाक कोड के लिए वर्तमान मौसम प्राप्त करें।\n\n**कमांड**  \n`/weather <location>`\n\n**पैरामीटर**  \n• `<location>` – शहर का नाम (जैसे लंदन), क्षेत्र (जैसे CA), या डाक कोड (जैसे 90210)।\n\n**स्वचालित रिपोर्ट्स**  \nऑपरेटर कॉन्फ़िगर कर सकते हैं स्वचालित रिपोर्ट्स `channel_id`(स), स्थानों, और एक क्रॉन शेड्यूल को कॉन्फ़िग फ़ाइलों में निर्दिष्ट करके।\n\n**उदाहरण**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**WX बॉट – मौसम सहायता**\n\nकिसी भी शहर, क्षेत्र, या ZIP/पोस्टल कोड के लिए वर्तमान मौसम प्राप्त करें।\n\n**कमांड**  \n`/weather <location> [units]`\n\n**पैरामीटर**  \n• `<location>` – किसी शहर का नाम (जैसे लंदन), क्षेत्र (जैसे CA), या पोस्टल कोड (जैसे 90210)। आवश्यक।\n• `[units]` – विकल्प। तापमान की इकाइयाँ: फ़ारेनहाइट (F) या सेल्सियस (C)।\n\n**स्वचालित रिपोर्ट**  \nऑपरेटर config फ़ाइलों में `channel_id`(स), स्थान, और क्रॉन शेड्यूल निर्दिष्ट करके स्वचालित रिपोर्ट कॉन्फ़िगर कर सकते हैं।\n\n**उदाहरण**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "कृपया एक स्थान प्रदान करें।",
+    "commands_weather_invalidLocation": "अमान्य स्थान प्रदान किया गया है।",
+    "commands_weather_error": "आपकी अनुरोध को संसाधित करते समय त्रुटि हुई।",
+    "commands_weather_embed_title": "{location} के लिए मौसम रिपोर्ट",
+    "commands_weather_embed_temp": "तापमान",
+    "commands_weather_embed_feelslike": "महसूस होता है",
+    "commands_weather_embed_humidity": "आर्द्रता",
+    "commands_weather_embed_condition": "स्थिति",
+    "commands_weather_embed_na": "उपलब्ध नहीं",
+    "commands_weather_embed_wind": "हवा"
 }

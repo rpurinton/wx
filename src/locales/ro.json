@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Ajutor meteo**\n\nObține vremea actuală pentru orice oraș, regiune sau cod poștal.\n\n**Comandă**  \n`/weather <location>`\n\n**Parametri**  \n• `<location>` – Numele unui oraș (ex. Londra), regiune (ex. CA) sau cod poștal (ex. 90210).\n\n**Rapoarte automate**  \nOperatorii pot configura rapoarte automate specificând `channel_id`(uri), locație(ni) și un program cron în fișierele de configurare.\n\n**Exemple**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Ajutor Meteo**\n\nObțineți vremea curentă pentru orice oraș, regiune sau cod poștal.\n\n**Comandă**  \n`/weather <locație> [unități]`\n\n**Parametri**  \n• `<locație>` – Numele unui oraș (ex. Londra), regiune (ex. CA) sau cod poștal (ex. 90210). Obligatoriu.\n• `[unități]` – Opțional. Unități de temperatură: Fahrenheit (F) sau Celsius (C).\n\n**Rapoarte automate**  \nOperatorii pot configura rapoarte automate specificând `channel_id`(uri), locație(i) și un program de tip cron în fișierele de configurare.\n\n**Exemple**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Vă rugăm să furnizați o locație.",
+    "commands_weather_invalidLocation": "Locație furnizată nevalidă.",
+    "commands_weather_error": "A apărut o eroare în procesarea cererii dumneavoastră.",
+    "commands_weather_embed_title": "Raport meteo pentru {location}",
+    "commands_weather_embed_temp": "Temperatură",
+    "commands_weather_embed_feelslike": "Temperatura resimțită",
+    "commands_weather_embed_humidity": "Umiditate",
+    "commands_weather_embed_condition": "Stare",
+    "commands_weather_embed_na": "N/A",
+    "commands_weather_embed_wind": "Vânt"
 }

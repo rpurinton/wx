@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Weerhulp**\n\nKrijg het huidige weer voor elke stad, regio of postcode.\n\n**Command**  \n`/weather <location>`\n\n**Parameters**  \n• `<location>` – Naam van een stad (bijv. Amsterdam), regio (bijv. NB), of postcode (bijv. 1011)\n\n**Geautomatiseerde rapporten**  \nOperators kunnen geautomatiseerde rapporten configureren door `channel_id`(s), locatie(s), en een cron-schema in de configuratiebestanden op te geven.\n\n**Voorbeelden**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Weer Help**\n\nKrijg het huidige weer voor elke stad, regio of postcode.\n\n**Command**  \n`/weather <locatie> [eenheden]`\n\n**Parameters**  \n• `<locatie>` – Naam van een stad (bijv. Londen), regio (bijv. CA), of postcode (bijv. 90210). Verplicht.\n• `[eenheden]` – Optioneel. Temperatuureenheden: Fahrenheit (F) of Celsius (C).\n\n**Automatische Rapporten**  \nOperators kunnen automatische rapporten configureren door `channel_id`(s), locatie(s) en een cron-schema in de configuratiebestanden op te geven.\n\n**Voorbeelden**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Parijs C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Gelieve een locatie op te geven.",
+    "commands_weather_invalidLocation": "Ongeldige locatie opgegeven.",
+    "commands_weather_error": "Er is een fout opgetreden bij het verwerken van uw verzoek.",
+    "commands_weather_embed_title": "Weerbericht voor {location}",
+    "commands_weather_embed_temp": "Temperatuur",
+    "commands_weather_embed_feelslike": "Gevoelstemperatuur",
+    "commands_weather_embed_humidity": "Vochtigheid",
+    "commands_weather_embed_condition": "Weersomstandigheid",
+    "commands_weather_embed_na": "N.V.T.",
+    "commands_weather_embed_wind": "Wind"
 }

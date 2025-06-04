@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Pomoć za vremensku prognozu**\n\nDobijte trenutnu vremensku prognozu za bilo koji grad, regiju ili poštanski broj.\n\n**Naredba**  \n`/weather <location>`\n\n**Parametri**  \n• `<location>` – Naziv grada (npr. London), regije (npr. CA) ili poštanskog broja (npr. 90210).\n\n**Automatski izvještaji**  \nOperateri mogu konfigurirati automatske izvještaje specificiranjem `channel_id`(ova), lokacija(i) i cron rasporeda u konfiguracijskim datotekama.\n\n**Primjeri**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Pomoć za Vrijeme**\n\nDohvati trenutačne vremenske uvjete za bilo koji grad, regiju ili poštanski broj.\n\n**Naredba**  \n`/weather <lokacija> [jedinice]`\n\n**Parametri**  \n• `<lokacija>` – Naziv grada (npr. London), regije (npr. CA) ili poštanskog broja (npr. 90210). Obavezno.\n• `[jedinice]` – Opcionalno. Jedinice za temperaturu: Fahrenheit (F) ili Celzij (C).\n\n**Automatski Izvještaji**  \nOperateri mogu konfigurirati automatske izvještaje tako da navedu `channel_id`(e), lokaciju(e) i raspored prema cron izrazu u konfiguracijskim datotekama.\n\n**Primjeri**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Molimo navedite lokaciju.",
+    "commands_weather_invalidLocation": "Navedena lokacija nije valjana.",
+    "commands_weather_error": "Došlo je do pogreške prilikom obrade vašeg zahtjeva.",
+    "commands_weather_embed_title": "Vremenski izvještaj za {location}",
+    "commands_weather_embed_temp": "Temperatura",
+    "commands_weather_embed_feelslike": "Osjećaj",
+    "commands_weather_embed_humidity": "Vlaga",
+    "commands_weather_embed_condition": "Uvjeti",
+    "commands_weather_embed_na": "N/A",
+    "commands_weather_embed_wind": "Vjetar"
 }

@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Sääohjeet**\n\nHanki ajankohtainen säätila mille tahansa kaupungille, alueelle tai postinumerolle.\n\n**Komento**  \n`/weather <location>`\n\n**Parametrit**  \n• `<location>` – Kaupungin nimi (esim. Helsinki), alue (esim. Uusimaa) tai postinumero (esim. 00100).\n\n**Automaattiset raportit**  \nOperaattorit voivat määrittää automaattisia raportteja määrittelemällä `channel_id`(t), sijainnit ja cron-aikataulun kokoonpanotiedostoissa.\n\n**Esimerkkejä**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Sääapua**\n\nHanki ajantasaiset säätilat mistä tahansa kaupungista, alueelta tai postinumerosta.\n\n**Komento**  \n`/weather <sijainti> [yksiköt]`\n\n**Parametrit**  \n• `<sijainti>` – Kaupungin nimi (esim. Helsinki), alue (esim. Uusimaa) tai postinumero (esim. 00100). Pakollinen.\n• `[yksiköt]` – Valinnainen. Lämpötilayksiköt: Fahrenheit (F) tai Celsius (C).\n\n**Automaattiset raportit**  \nYlläpitäjät voivat määrittää automaattiset raportit määrittämällä `channel_id`(t), sijainnit ja cron-aikataulun konfiguraatiotiedostoissa.\n\n**Esimerkit**  \n```md\n/weather Tokio\n/weather New York\n/weather 10001\n/weather Pariisi C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Ole hyvä ja anna sijainti.",
+    "commands_weather_invalidLocation": "Annettu sijainti on virheellinen.",
+    "commands_weather_error": "Virhe tapahtui käsiteltäessä pyyntöäsi.",
+    "commands_weather_embed_title": "Sääraportti paikalle {location}",
+    "commands_weather_embed_temp": "Lämpötila",
+    "commands_weather_embed_feelslike": "Tuntuu kuin",
+    "commands_weather_embed_humidity": "Kosteus",
+    "commands_weather_embed_condition": "Säätila",
+    "commands_weather_embed_na": "Ei saatavilla",
+    "commands_weather_embed_wind": "Tuuli"
 }

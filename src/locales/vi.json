@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Trợ giúp Thời tiết**\n\nNhận thời tiết hiện tại cho bất kỳ thành phố, khu vực hoặc mã ZIP/bưu chính nào.\n\n**Lệnh**  \n`/weather <location>`\n\n**Tham số**  \n• `<location>` – Tên thành phố (ví dụ London), khu vực (ví dụ CA), hoặc mã bưu chính (ví dụ 90210).\n\n**Báo cáo Tự động**  \nNgười điều hành có thể cấu hình báo cáo tự động bằng cách chỉ định `channel_id`(s), vị trí, và lịch trình cron trong các tệp cấu hình.\n\n**Ví dụ**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Trợ giúp thời tiết**\n\nLấy thông tin thời tiết hiện tại cho bất kỳ thành phố, khu vực hoặc mã bưu điện nào.\n\n**Lệnh**  \n`/weather <location> [units]`\n\n**Tham số**  \n• `<location>` – Tên thành phố (ví dụ: London), khu vực (ví dụ: CA), hoặc mã bưu điện (ví dụ: 90210). Bắt buộc.\n• `[units]` – Tùy chọn. Đơn vị nhiệt độ: Fahrenheit (F) hoặc Celsius (C).\n\n**Báo cáo tự động**  \nNgười quản lý có thể cấu hình báo cáo tự động bằng cách chỉ định `channel_id`(s), vị trí và lịch trình cron trong file cấu hình.\n\n**Ví dụ**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Vui lòng cung cấp vị trí.",
+    "commands_weather_invalidLocation": "Vị trí cung cấp không hợp lệ.",
+    "commands_weather_error": "Đã xảy ra lỗi khi xử lý yêu cầu của bạn.",
+    "commands_weather_embed_title": "Báo cáo thời tiết cho {location}",
+    "commands_weather_embed_temp": "Nhiệt độ",
+    "commands_weather_embed_feelslike": "Cảm giác như",
+    "commands_weather_embed_humidity": "Độ ẩm",
+    "commands_weather_embed_condition": "Điều kiện",
+    "commands_weather_embed_na": "N/A",
+    "commands_weather_embed_wind": "Gió"
 }

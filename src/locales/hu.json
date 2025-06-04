@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Időjárás Segítség**\n\nSzerezd meg az aktuális időjárást bármely városra, régióra vagy irányítószámra.\n\n**Parancs**  \n`/weather <helyszín>`\n\n**Paraméterek**  \n• `<helyszín>` – Város neve (pl. London), régió (pl. CA), vagy irányítószám (pl. 90210).\n\n**Automatizált Jelentések**  \nAz üzemeltetők konfigurálhatnak automatizált jelentéseket a `channel_id`(ek), helyszín(ek) és cron ütemezés megadásával a konfigurációs fájlokban.\n\n**Példák**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Időjárás Segítség**\n\nKapja meg a jelenlegi időjárást bármely város, régió vagy irányítószám alapján.\n\n**Parancs**  \n`/weather <helyszín> [mértékegység]`\n\n**Paraméterek**  \n• `<helyszín>` – Város neve (pl. Budapest), régió (pl. CA) vagy irányítószám (pl. 90210). Kötelező.\n• `[mértékegység]` – Opcionális. Hőmérsékleti egységek: Fahrenheit (F) vagy Celsius (C).\n\n**Automatizált Jelentések**  \nAz operátorok konfigurálhatnak automatizált jelentéseket a `channel_id`(k), helyszín(ek) és cron ütemezés megadásával a konfigurációs fájlokban.\n\n**Példák**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Kérem, adjon meg egy helyszínt.",
+    "commands_weather_invalidLocation": "Érvénytelen helyszín lett megadva.",
+    "commands_weather_error": "Hiba történt a kérés feldolgozása során.",
+    "commands_weather_embed_title": "Időjárás jelentés ide: {location}",
+    "commands_weather_embed_temp": "Hőmérséklet",
+    "commands_weather_embed_feelslike": "Érzett hőmérséklet",
+    "commands_weather_embed_humidity": "Páratartalom",
+    "commands_weather_embed_condition": "Állapot",
+    "commands_weather_embed_na": "N/A",
+    "commands_weather_embed_wind": "Szél"
 }

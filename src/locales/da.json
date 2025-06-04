@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Vejr Hjælp**\n\nFå den aktuelle vejrudsigt for enhver by, region eller postnummer.\n\n**Kommando**  \n`/weather <location>`\n\n**Parametre**  \n• `<location>` – Navn på en by (f.eks. London), region (f.eks. CA) eller postnummer (f.eks. 90210).\n\n**Automatiske Rapporter**  \nOperatører kan konfigurere automatiske rapporter ved at specificere `channel_id`(er), lokation(er) og et cron-skema i konfigurationsfilerne.\n\n**Eksempler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Vejrhjælp**\n\nFå den aktuelle vejrudsigt for en hvilken som helst by, region eller postnummer.\n\n**Kommando**  \n`/weather <location> [units]`\n\n**Parametre**  \n• `<location>` – Navn på en by (f.eks. London), region (f.eks. CA) eller postnummer (f.eks. 90210). Obligatorisk.\n• `[units]` – Valgfrit. Temperatur enheder: Fahrenheit (F) eller Celsius (C).\n\n**Automatiske rapporter**  \nOperatører kan konfigurere automatiske rapporter ved at angive `channel_id`(er), lokation(er) og en cron-tidsplan i konfigurationsfilerne.\n\n**Eksempler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Venligst angiv en lokation.",
+    "commands_weather_invalidLocation": "Ugyldig lokation angivet.",
+    "commands_weather_error": "Der opstod en fejl under behandlingen af din anmodning.",
+    "commands_weather_embed_title": "Vejrudsigt for {location}",
+    "commands_weather_embed_temp": "Temperatur",
+    "commands_weather_embed_feelslike": "Føles som",
+    "commands_weather_embed_humidity": "Luftfugtighed",
+    "commands_weather_embed_condition": "Forhold",
+    "commands_weather_embed_na": "Ikke tilgængelig",
+    "commands_weather_embed_wind": "Vind"
 }

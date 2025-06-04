@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Ajuda do Clima**\n\nObtenha o clima atual para qualquer cidade, região ou CEP.\n\n**Comando**  \n`/weather <localização>`\n\n**Parâmetros**  \n• `<localização>` – Nome de uma cidade (ex. Londres), região (ex. CA) ou código postal (ex. 90210).\n\n**Relatórios Automatizados**  \nOperadores podem configurar relatórios automatizados especificando `channel_id`(s), localização(ões) e uma programação cron nos arquivos de configuração.\n\n**Exemplos**  \n```md\n/weather Tóquio\n/weather Nova York\n/weather 10001\n```"
+    "help": "**Wx Bot – Ajuda do Tempo**\n\nObtenha o tempo atual para qualquer cidade, região ou código postal.\n\n**Comando**  \n`/weather <localização> [unidades]`\n\n**Parâmetros**  \n• `<localização>` – Nome de uma cidade (ex. Londres), região (ex. SP), ou código postal (ex. 90210). Obrigatório.\n• `[unidades]` – Opcional. Unidades de temperatura: Fahrenheit (F) ou Celsius (C).\n\n**Relatórios Automáticos**  \nOperadores podem configurar relatórios automáticos especificando `channel_id`(s), localizações, e uma agenda cron nos arquivos de configuração.\n\n**Exemplos**  \n```md\n/weather Tóquio\n/weather Nova York\n/weather 10001\n/weather Paris C\n/weather \"São Francisco\" F\n```",
+    "commands_weather_noLocation": "Por favor, informe uma localização.",
+    "commands_weather_invalidLocation": "Localização informada inválida.",
+    "commands_weather_error": "Ocorreu um erro ao processar sua solicitação.",
+    "commands_weather_embed_title": "Relatório do Tempo para {location}",
+    "commands_weather_embed_temp": "Temperatura",
+    "commands_weather_embed_feelslike": "Sensação Térmica",
+    "commands_weather_embed_humidity": "Umidade",
+    "commands_weather_embed_condition": "Condição",
+    "commands_weather_embed_na": "N/D",
+    "commands_weather_embed_wind": "Vento"
 }

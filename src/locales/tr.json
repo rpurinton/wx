@@ -1,3 +1,13 @@
 {
-    "help": "**Wx Bot – Hava Durumu Yardımı**\n\nHerhangi bir şehir, bölge veya posta kodu için güncel hava durumunu öğrenin.\n\n**Komut**  \n`/weather <location>`\n\n**Parametreler**  \n• `<location>` – Bir şehir ismi (ör. İstanbul), bölge (ör. TR), veya posta kodu (ör. 34000).\n\n**Otomatik Raporlar**  \nOperatörler, yapılandırma dosyalarında `channel_id`(ler), lokasyon(lar) ve cron zamanlaması belirterek otomatik raporları ayarlayabilirler.\n\n**Örnekler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n```"
+    "help": "**Wx Bot – Hava Durumu Yardımı**\n\nHerhangi bir şehir, bölge veya posta kodu için güncel hava durumunu alın.\n\n**Komut**  \n`/weather <location> [units]`\n\n**Parametreler**  \n• `<location>` – Bir şehir adı (ör. İstanbul), bölge (ör. TR) veya posta kodu (ör. 34000). Zorunlu.\n• `[units]` – Opsiyonel. Sıcaklık birimleri: Fahrenheit (F) veya Celsius (C).\n\n**Otomatik Raporlar**  \nOperatörler, yapılandırma dosyalarında `channel_id`(ler), lokasyon(lar) ve cron zamanlaması belirterek otomatik raporlar ayarlayabilirler.\n\n**Örnekler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Lütfen bir konum belirtin.",
+    "commands_weather_invalidLocation": "Geçersiz konum belirtildi.",
+    "commands_weather_error": "İsteğiniz işlenirken bir hata oluştu.",
+    "commands_weather_embed_title": "{location} için Hava Durumu Raporu",
+    "commands_weather_embed_temp": "Sıcaklık",
+    "commands_weather_embed_feelslike": "Hissedilen",
+    "commands_weather_embed_humidity": "Nem",
+    "commands_weather_embed_condition": "Durum",
+    "commands_weather_embed_na": "Mevcut Değil",
+    "commands_weather_embed_wind": "Rüzgar"
 }
