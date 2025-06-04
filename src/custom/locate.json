@@ -6,7 +6,7 @@
             "content": [
                 {
                     "type": "text",
-                    "text": "user_input: [{user_input}]\n1) determine the latitude and longitude for user_input with 4 decimal precision.\n2) determine the proper formal place name for user_input (include City, [State, ], Country) and translate the name to language/locale code: {locale}\n\ncall getLatLon with your determined lat, lon, and translated name\nif you cannot determine an exact location from user_input then call error_function\nonly call one function or the other but not both."
+                    "text": "Given user_input: {user_input}\n- Determine the latitude and longitude for user_input (4 decimal places).\n- Determine the formal place name (City, [State,] Country) and translate it to the specified locale: {locale}.\n- Identify the standard temperature units for this location (F or C).\n\nCall getLatLon with lat, lon, translated name, and units.\nIf the location cannot be determined, call error_function.\nCall only one function, not both."
                 }
             ]
         }
@@ -25,7 +25,8 @@
                     "required": [
                         "lat",
                         "lon",
-                        "location_name"
+                        "location_name",
+                        "units"
                     ],
                     "properties": {
                         "lat": {
@@ -39,6 +40,14 @@
                         "location_name": {
                             "type": "string",
                             "description": "The name of the location (City, [State,] Country)"
+                        },
+                        "units": {
+                            "type": "string",
+                            "enum": [
+                                "F",
+                                "C"
+                            ],
+                            "description": "Temperature units: F (Fahrenheit) or C (Celsius)"
                         }
                     },
                     "additionalProperties": false
@@ -69,6 +78,7 @@
         }
     ],
     "tool_choice": "required",
+    "parallel_tool_calls": false,
     "temperature": 1,
     "max_completion_tokens": 2048,
     "top_p": 1,
