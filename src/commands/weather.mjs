@@ -3,6 +3,7 @@ import { getMsg } from '../locales.mjs';
 
 // Command handler for /help
 export default async function (interaction) {
+    log.debug("Weather command interaction", interaction);
     interaction.deferReply();
     const locale = interaction.guild ? interaction.guild.locale : interaction.locale || 'en-US';
     log.info("Locales", {
