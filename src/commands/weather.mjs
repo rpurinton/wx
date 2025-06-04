@@ -53,7 +53,7 @@ export default async function (interaction) {
             return;
         }
         // get weather report from openai
-        const weatherReport = await getReport(weatherData, locationName);
+        const weatherReport = await getReport(weatherData, locationName, units, locale);
         log.debug("Weather report", weatherReport);
         if (!weatherReport) {
             log.error("Failed to get weather report", { locationName });
@@ -66,22 +66,14 @@ export default async function (interaction) {
         // reply with the response
         await interaction.editReply({ content: weatherReport });
     } catch (err) {
-        log.error("Error in /weather handler", {
-            errorMessage: err && err.message,
-            errorStack: err && err.stack,
-            errorObj: err
-        });
+        log.error("Error in /weather handler", err);
         try {
             await interaction.editReply({
                 content: getMsg('en-US', 'commands_weather_error', 'An error occurred while processing your request.'),
                 flags: 1 << 6 // Ephemeral
             });
         } catch (e) {
-            log.error("Failed to reply with error message", {
-                errorMessage: e && e.message,
-                errorStack: e && e.stack,
-                errorObj: e
-            });
+            log.error("Failed to reply with error message", e);
         }
     }
 }

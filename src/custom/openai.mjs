@@ -41,12 +41,33 @@ export async function getLatLon(location, locale) {
 }
 
 /**
- * Stub for getReport - resolves to a string weather report
- * @param {object} weatherData
- * @param {string} locationName
+ * Generate a TV style weather report using OpenAI and report.json prompt
+ * @param {object} weatherData - The weather data object from OpenWeatherMap
+ * @param {string} locationName - The name of the location
+ * @param {string} units - 'F' for Fahrenheit, 'C' for Celsius, or undefined for default
+ * @param {string} locale - The locale for the report (e.g., 'en-US')
  * @returns {Promise<string|null>}
  */
-export async function getReport(weatherData, locationName) {
-    // TODO: Implement actual OpenAI report generation logic
+export async function getReport(weatherData, locationName, units, locale) {
+    const dirname = getCurrentDirname(import.meta);
+    const reportPath = path.join(dirname, 'report.json');
+    const reportConfig = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    reportConfig.messages[0].content[0].text = reportConfig.messages[0].content[0].text
+        .replace('{weather_data}', JSON.stringify(weatherData))
+        .replace('{location_name}', locationName)
+        .replace('{units}', units)
+        .replace('{locale}', locale);
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) throw new Error('OPENAI_API_KEY not set');
+    const openai = new OpenAI({ apiKey });
+
+    const response = await openai.chat.completions.create(reportConfig);
+    log.debug('OpenAI report response', response);
+    try {
+        const text = response.choices?.[0]?.message?.content;
+        if (text) return text;
+    } catch (err) {
+        log.error('Failed to parse OpenAI report response', err);
+    }
     return null;
 }
