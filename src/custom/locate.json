@@ -1,0 +1,77 @@
+{
+    "model": "gpt-4.1-mini",
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "user_input: [{user_input}]\n1) determine the latitude and longitude for user_input with 4 decimal precision.\n2) determine the proper formal place name for user_input (include City, [State, ], Country) and translate the name to language/locale code: {locale}\n\ncall getLatLon with your determined lat, lon, and translated name\nif you cannot determine an exact location from user_input then call error_function\nonly call one function or the other but not both."
+                }
+            ]
+        }
+    ],
+    "response_format": {
+        "type": "text"
+    },
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "getLatLon",
+                "description": "Retrieves latitude and longitude for a given location name",
+                "parameters": {
+                    "type": "object",
+                    "required": [
+                        "lat",
+                        "lon",
+                        "location_name"
+                    ],
+                    "properties": {
+                        "lat": {
+                            "type": "number",
+                            "description": "Latitude of the location"
+                        },
+                        "lon": {
+                            "type": "number",
+                            "description": "Longitude of the location"
+                        },
+                        "location_name": {
+                            "type": "string",
+                            "description": "The name of the location (City, [State,] Country)"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "strict": true
+            }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "error_function",
+                "description": "Handles error messages",
+                "parameters": {
+                    "type": "object",
+                    "required": [
+                        "error_message"
+                    ],
+                    "properties": {
+                        "error_message": {
+                            "type": "string",
+                            "description": "The error message to be handled."
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "strict": true
+            }
+        }
+    ],
+    "tool_choice": "required",
+    "temperature": 1,
+    "max_completion_tokens": 2048,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+}
