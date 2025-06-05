@@ -31,8 +31,14 @@ export function createReportHelpers({
          * @returns {Promise<{lat: number, lon: number, locationName: string, units: string}>}
          */
         async resolveLocationAndUnits(location, locale, userUnits) {
-            const [lat, lon, locationNameOrig, aiUnits, timezone] = await saveLatLon(location, locale);
-            logger.debug && logger.debug('AI returned timezone:', timezone);
+            const result = await saveLatLon(location, locale);
+            logger.debug && logger.debug('[resolveLocationAndUnits] saveLatLon result:', result);
+            const [lat, lon, locationNameOrig, aiUnits, timezone] = result;
+            if (!timezone) {
+                logger.warn && logger.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
+            } else {
+                logger.debug && logger.debug('AI returned timezone:', timezone);
+            }
             const locationName = locationNameOrig || location;
             const units = userUnits || aiUnits;
             return { lat, lon, locationName, units, timezone };
@@ -214,8 +220,14 @@ export function buildWeatherEmbed(weatherData, weatherReport, locationName, unit
 
 // Export resolveLocationAndUnits as a named export for compatibility with consumers and tests
 export async function resolveLocationAndUnits(location, locale, userUnits) {
-    const [lat, lon, locationNameOrig, aiUnits, timezone] = await saveLatLon(location, locale);
-    log.debug && log.debug('AI returned timezone:', timezone);
+    const result = await saveLatLon(location, locale);
+    log.debug && log.debug('[resolveLocationAndUnits] saveLatLon result:', result);
+    const [lat, lon, locationNameOrig, aiUnits, timezone] = result;
+    if (!timezone) {
+        log.warn && log.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
+    } else {
+        log.debug && log.debug('AI returned timezone:', timezone);
+    }
     const locationName = locationNameOrig || location;
     const units = userUnits || aiUnits;
     return { lat, lon, locationName, units, timezone };
