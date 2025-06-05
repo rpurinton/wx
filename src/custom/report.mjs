@@ -63,19 +63,7 @@ export function createReportHelpers({
          * @returns {Promise<string|null>}
          */
         async generateWeatherReport(weatherData, locationName, units, locale, timezone) {
-            logger.debug && logger.debug('[generateWeatherReport] Input timezone:', timezone, 'locale:', locale);
             const report = await getReport(weatherData, locationName, units, locale, timezone);
-            if (logger.debug) {
-                let timeString;
-                try {
-                    logger.debug('[generateWeatherReport] Calculating time string with', { locale, timezone });
-                    timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                } catch (e) {
-                    logger.debug('[generateWeatherReport] Error with timezone, falling back to UTC', e);
-                    timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                    logger.debug('[generateWeatherReport] Fallback UTC time string:', timeString);
-                }
-            }
             return report;
         },
 
@@ -232,7 +220,6 @@ export async function resolveLocationAndUnits(location, locale, userUnits) {
 
 // Export generateWeatherReport as a named export for compatibility
 export async function generateWeatherReport(weatherData, locationName, units, locale, timezone) {
-    log.debug && log.debug('[generateWeatherReport] Input timezone:', timezone, 'locale:', locale);
     const report = await getReport(weatherData, locationName, units, locale, timezone);
     return report;
 }
