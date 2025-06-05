@@ -2,6 +2,7 @@ import log from '../log.mjs';
 import { getMsg } from '../locales.mjs';
 import { getWeatherData } from '../custom/owm.mjs';
 import { getLatLon, getReport } from '../custom/openai.mjs';
+import { msToMph, msToKmh } from '../custom/convert.mjs';
 
 // Command handler for /weather
 export default async function (interaction) {
@@ -64,11 +65,22 @@ export default async function (interaction) {
             return;
         }
         // reply with a Discord embed
+        let windValue = getMsg(locale, 'commands_weather_embed_na', 'N/A');
+        if (weatherData.wind && weatherData.wind.speed !== undefined) {
+            if (units === 'F') {
+                windValue = `${msToMph(weatherData.wind.speed).toFixed(1)} mph`;
+            } else if (units === 'C') {
+                windValue = `${msToKmh(weatherData.wind.speed).toFixed(1)} km/h`;
+            } else {
+                windValue = `${weatherData.wind.speed} m/s`;
+            }
+        }
         const weatherIcon = weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon
             ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
             : null;
         const embed = {
-            title: getMsg(locale, 'commands_weather_embed_title', `Weather Report for ${locationName}`),
+            title: getMsg(locale, 'commands_weather_embed_title', `Weather Report for ${locationName}`)
+                .replace('{location}', locationName),
             color: 0x808080, // gray
             description: weatherReport,
             fields: [
@@ -96,9 +108,7 @@ export default async function (interaction) {
                 },
                 {
                     name: getMsg(locale, 'commands_weather_embed_wind', 'Wind'),
-                    value: weatherData.wind && weatherData.wind.speed !== undefined
-                        ? `${weatherData.wind.speed} m/s`
-                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
+                    value: windValue,
                     inline: true
                 }
             ],
