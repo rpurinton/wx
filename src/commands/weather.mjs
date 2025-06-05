@@ -50,7 +50,8 @@ export default async function (
         await interaction.reply({ embeds: [progressEmbed] });
 
         // Step 1: Get location data
-        const { lat, lon, locationName, units } = await resolveLocationAndUnitsDep(location, locale, userUnits);
+        const { lat, lon, locationName, units, timezone } = await resolveLocationAndUnitsDep(location, locale, userUnits);
+        logDep.debug("Resolved timezone for report", timezone);
         let progressLines = [
             getMsgDep(locale, 'embed_getting_location_ok', '✅ Getting location data... OK!'),
             getMsgDep(locale, 'embed_getting_weather', '⏳ Getting weather data...'),
@@ -78,7 +79,7 @@ export default async function (
         }
 
         // Step 3: Get weather report
-        const weatherReport = await generateWeatherReportDep(weatherData, locationName, units, locale);
+        const weatherReport = await generateWeatherReportDep(weatherData, locationName, units, locale, timezone);
         progressLines[2] = getMsgDep(locale, 'embed_generating_report_ok', '✅ Generating report... OK!');
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherReport) {
