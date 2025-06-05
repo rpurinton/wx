@@ -33,7 +33,8 @@ export function createReportHelpers({
         async resolveLocationAndUnits(location, locale, userUnits) {
             const result = await saveLatLon(location, locale);
             logger.debug && logger.debug('[resolveLocationAndUnits] saveLatLon result:', result);
-            const [lat, lon, locationNameOrig, aiUnits, timezone] = result;
+            const arr = Array.isArray(result) ? result : Object.values(result);
+            const [lat, lon, locationNameOrig, aiUnits, timezone] = arr;
             if (!timezone) {
                 logger.warn && logger.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
             } else {
@@ -222,7 +223,8 @@ export function buildWeatherEmbed(weatherData, weatherReport, locationName, unit
 export async function resolveLocationAndUnits(location, locale, userUnits) {
     const result = await saveLatLon(location, locale);
     log.debug && log.debug('[resolveLocationAndUnits] saveLatLon result:', result);
-    const [lat, lon, locationNameOrig, aiUnits, timezone] = result;
+    const arr = Array.isArray(result) ? result : Object.values(result);
+    const [lat, lon, locationNameOrig, aiUnits, timezone] = arr;
     if (!timezone) {
         log.warn && log.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
     } else {
