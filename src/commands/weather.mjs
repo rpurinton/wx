@@ -2,7 +2,7 @@ import log from '../log.mjs';
 import { getMsg } from '../locales.mjs';
 import { getWeatherData } from '../custom/owm.mjs';
 import { getLatLon, getReport } from '../custom/openai.mjs';
-import { msToMph, msToKmh } from '../custom/convert.mjs';
+import { msToMph, msToKmh, hpaToInHg } from '../custom/convert.mjs';
 
 // Command handler for /weather
 export default async function (interaction) {
@@ -109,6 +109,15 @@ export default async function (interaction) {
                 {
                     name: getMsg(locale, 'commands_weather_embed_wind', 'Wind'),
                     value: windValue,
+                    inline: true
+                },
+                {
+                    name: getMsg(locale, 'commands_weather_embed_pressure', 'Pressure'),
+                    value: weatherData.main && weatherData.main.pressure !== undefined
+                        ? (units === 'F'
+                            ? `${hpaToInHg(weatherData.main.pressure).toFixed(2)} inHg`
+                            : `${weatherData.main.pressure} hPa`)
+                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
                     inline: true
                 }
             ],

@@ -9,5 +9,6 @@
     "commands_weather_embed_humidity": "Humidity",
     "commands_weather_embed_condition": "Condition",
     "commands_weather_embed_na": "N/A",
-    "commands_weather_embed_wind": "Wind"
+    "commands_weather_embed_wind": "Wind",
+    "commands_weather_embed_pressure": "Pressure"
 }
