@@ -1,211 +1,110 @@
-# wx
+# Wx App
 
-A modern Discord.js app template supporting locales, events, and slash commands.
+A modern Discord app for weather lookups and scheduled weather reports.
 
 ---
 
 ## Features
 
-- **Easy command and event registration**: Just drop files in the right folders.
-- **Locale support**: Add or edit language files in `src/locales/`.
-- **Graceful shutdown and error handling**.
-- **Winston-based logging**.
-- **Environment-based configuration**.
-- **Systemd service template for production deployment**.
+- **/weather command**: Instantly look up the weather for any location, with optional units (C/F).
+- **Scheduled weather reports**: Automatically post weather updates to specified Discord channels by editing `cron.json`.
+- **Easy customization**: Add new commands or event handlers with simple file-based structure.
 
 ---
 
 ## Getting Started
 
-### 1. Fork this repository
+### 1. Fork and Clone
 
-It's recommended to [fork](https://github.com/rpurinton/wx/fork) this repo to your own GitHub account before making changes. This allows you to pull upstream updates easily.
-
-### 2. Clone your fork
+Fork this repository to your own GitHub account, then clone it:
 
 ```sh
-# Replace <your-username> and <your-repo> with your GitHub info
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/<your-username>/wx.git
+cd wx
 ```
 
-### 3. Rename for your project
+### 2. Configure Environment
 
-- Rename `wx.mjs` to your app's main file name (e.g., `myapp.mjs`).
-- Rename `wx.service` to match your app (e.g., `myapp.service`).
-- Update `package.json` with your own project name, description, author, and repository info.
-
-### 4. Install dependencies
-
-```sh
-npm install
-```
-
-### 5. Configure environment
-
-Copy `.env.example` to `.env` if it exists, or create a `.env` file with your settings:
+Copy the example environment file and edit it with your credentials:
 
 ```sh
 cp .env.example .env
 ```
 
-Edit the `.env` file:
+Edit `.env` and set your Discord app token, client ID, and API keys.
 
-```env
-DISCORD_TOKEN=your-app-token
-DISCORD_CLIENT_ID=your-client-id
-LOG_LEVEL=info
+### 3. (Optional) Configure Scheduled Reports
+
+To enable scheduled weather reports, copy the example cron file and edit as needed:
+
+```sh
+cp cron.json.example cron.json
+```
+
+Edit `cron.json` to specify the schedule, channel IDs, locations, units, and locales for your reports.
+
+### 4. Install Dependencies
+
+```sh
+npm install
+```
+
+### 5. Run Tests (Optional)
+
+```sh
+npm test
 ```
 
 ### 6. Run the app
 
 ```sh
 node wx.mjs
-# or, if renamed:
-node myapp.mjs
 ```
-
----
-
-## Customization
-
-### Adding Commands
-
-- Place a JSON definition (e.g., `help.json`) in `src/commands/`.
-- Add a handler file with the same name and `.mjs` extension (e.g., `help.mjs`) in the same folder.
-- The handler should export a default async function.
-
-Example: `src/commands/ping.json`
-
-```json
-{
-  "name": "ping",
-  "description": "Replies with Pong!"
-}
-```
-
-Example: `src/commands/ping.mjs`
-
-```js
-export default async (interaction) => {
-  await interaction.reply('Pong!');
-};
-```
-
-### Adding Events
-
-- Place a file named after the Discord event (e.g., `messageCreate.mjs`) in `src/events/`.
-- Export a default function that takes the event arguments.
-
-Example: `src/events/messageCreate.mjs`
-
-```js
-export default (message) => {
-  if (message.content === '!hello') {
-    message.reply('Hello!');
-  }
-};
-```
-
-### Locales
-
-- Add or edit JSON files in `src/locales/` (e.g., `en-US.json`, `fr.json`).
-- Each file should export a flat object of key-value pairs.
-- The app loads all locale files at startup and makes them available globally.
-
-### Logging
-
-- Logging is handled by Winston.
-- Set `LOG_LEVEL` in your `.env` (`debug`, `info`, `warn`, `error`).
-
-### Error Handling & Shutdown
-
-- Uncaught exceptions and rejections are logged.
-- Graceful shutdown on `SIGTERM`, `SIGINT`, or `SIGHUP`.
-- The app will attempt to destroy the Discord client cleanly before exiting.
 
 ---
 
 ## Systemd Service Setup
 
-To run your app as a service on Linux, use the provided `wx.service` file.
+To run Wx as a service on Linux, use the provided `wx.service` file.
 
-**Update the paths and names to match your project.**
-
-Example `wx.service`:
-
-```ini
-[Unit]
-Description=wx
-After=network-online.target
-Wants=network-online.target
-StartLimitBurst=3
-StartLimitIntervalSec=60
-
-[Service]
-User=appuser
-Group=appgroup
-RestartSec=5
-Restart=on-failure
-WorkingDirectory=/opt/wx
-ExecStart=/usr/bin/node /opt/wx/wx.mjs
-EnvironmentFile=/opt/wx/.env
-
-[Install]
-WantedBy=multi-user.target
-```
-
-**Instructions:**
-
-1. Copy and rename the service file:
-
-   ```sh
-   sudo cp wx.service /etc/systemd/system/myapp.service
-   ```
-
-2. Edit the service file:
+1. Copy `wx.service` to your server and edit as needed:
    - Set `WorkingDirectory` and `ExecStart` to your app's location and main file (use absolute paths).
    - Set `EnvironmentFile` to your `.env` location.
    - Change `User` and `Group` to a non-root user for security.
 
-3. Reload systemd and enable the service:
+2. Install and enable the service:
 
-   ```sh
-   sudo systemctl daemon-reload
-   sudo systemctl enable myapp.service
-   sudo systemctl start myapp.service
-   sudo systemctl status myapp.service
-   ```
-
----
-
-## Folder Structure
-
-```text
-src/
-  commands/    # Command definitions and handlers
-  events/      # Event handlers
-  locales/     # Locale JSON files
-  *.mjs       # Core logic (commands, events, logging, etc.)
+```sh
+sudo cp wx.service /etc/systemd/system/wx.service
+sudo systemctl daemon-reload
+sudo systemctl enable wx.service
+sudo systemctl start wx.service
+sudo systemctl status wx.service
 ```
 
 ---
 
-## Best Practices & Tips
+## Project Structure & Customization
 
-- **Keep your app token secret!** Never commit your `.env` file or token to version control.
-- **Use a dedicated, non-root user** for running your app in production.
-- **Regularly pull upstream changes** if you want to keep your fork up to date.
-- **Write tests** for your command and event handlers if your app grows in complexity.
-- **Check Discord.js documentation** for new features and event names: [https://discord.js.org/](https://discord.js.org/)
+- `src/commands/` — Add new slash commands here. Each command has a `.json` definition and a `.mjs` handler file.
+- `src/events/` — Discord event handlers (e.g., `ready.mjs`, `messageCreate.mjs`). Add or customize event logic here.
+- `src/locales/` — Locale JSON files for multi-language support.
+- `src/custom/` — Weather logic, OpenAI helpers, and scheduling code.
+- `cron.json` — Schedule automatic weather reports to Discord channels.
+- `wx.mjs` — Main entry point.
+
+To add a new command, create a `.json` definition and a `.mjs` handler in `src/commands/`. To customize event handling, edit or add files in `src/events/`.
 
 ---
 
 ## License
 
-MIT
+[MIT}(LICENSE)
 
-## Developer Support
+---
 
-Email: <russell.purinton@gmail.com>
+## Support
+
+Russell Purinton  
+Email: <russell.purinton@gmail.com>  
 Discord: laozi101
