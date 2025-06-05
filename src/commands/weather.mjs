@@ -1,14 +1,11 @@
 import log from '../log.mjs';
 import { getMsg } from '../locales.mjs';
-import { getWeatherData } from '../custom/owm.mjs';
-import { getLatLon, getReport } from '../custom/openai.mjs';
-import { msToMph, msToKmh, hpaToInHg } from '../custom/convert.mjs';
+import { resolveLocationAndUnits, fetchWeather, generateWeatherReport, buildWeatherEmbed } from '../custom/report.mjs';
 
 // Command handler for /weather
 export default async function (interaction) {
     try {
         log.debug("Weather command interaction", interaction);
-        // Remove deferReply, use reply for the initial progress embed
         const locale = interaction.guildLocale || interaction.locale || 'en-US';
         log.debug("Locales", {
             interactionLocale: interaction.locale,
@@ -38,9 +35,7 @@ export default async function (interaction) {
         await interaction.reply({ embeds: [progressEmbed] });
 
         // Step 1: Get location data
-        const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
-        let locationName = locationNameOrig;
-        let units = userUnits || aiUnits;
+        const { lat, lon, locationName, units } = await resolveLocationAndUnits(location, locale, userUnits);
         let progressLines = [
             getMsg(locale, 'embed_getting_location_ok', '✅ Getting location data... OK!'),
             getMsg(locale, 'embed_getting_weather', '⏳ Getting weather data...'),
@@ -54,10 +49,9 @@ export default async function (interaction) {
             });
             return;
         }
-        if (!locationName) locationName = location;
 
         // Step 2: Get weather data
-        const weatherData = await getWeatherData(lat, lon, units);
+        const weatherData = await fetchWeather(lat, lon, units);
         progressLines[1] = getMsg(locale, 'embed_getting_weather_ok', '✅ Getting weather data... OK!');
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherData) {
@@ -69,7 +63,7 @@ export default async function (interaction) {
         }
 
         // Step 3: Get weather report
-        const weatherReport = await getReport(weatherData, locationName, units, locale);
+        const weatherReport = await generateWeatherReport(weatherData, locationName, units, locale);
         progressLines[2] = getMsg(locale, 'embed_generating_report_ok', '✅ Generating report... OK!');
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherReport) {
@@ -81,63 +75,7 @@ export default async function (interaction) {
         }
 
         // Final weather embed (replace progress)
-        let windValue = getMsg(locale, 'embed_na', 'N/A');
-        if (weatherData.wind && weatherData.wind.speed !== undefined) {
-            if (units === 'F') {
-                windValue = `${msToMph(weatherData.wind.speed).toFixed(1)} mph`;
-            } else if (units === 'C') {
-                windValue = `${msToKmh(weatherData.wind.speed).toFixed(1)} km/h`;
-            } else {
-                windValue = `${weatherData.wind.speed} m/s`;
-            }
-        }
-        const weatherIcon = weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon
-            ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
-            : null;
-        const embed = {
-            title: getMsg(locale, 'embed_title', `Weather Report for ${locationName}`).replace('{location}', locationName),
-            color: 0x808080, // gray
-            description: weatherReport,
-            fields: [
-                {
-                    name: getMsg(locale, 'embed_temp', 'Temperature'),
-                    value: `${weatherData.main.temp}°${units}`,
-                    inline: true
-                },
-                {
-                    name: getMsg(locale, 'embed_feelslike', 'Feels Like'),
-                    value: `${weatherData.main.feels_like}°${units}`,
-                    inline: true
-                },
-                {
-                    name: getMsg(locale, 'embed_humidity', 'Humidity'),
-                    value: `${weatherData.main.humidity}%`,
-                    inline: true
-                },
-                {
-                    name: getMsg(locale, 'embed_condition', 'Condition'),
-                    value: weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description
-                        ? weatherData.weather[0].description
-                        : getMsg(locale, 'embed_na', 'N/A'),
-                    inline: true
-                },
-                {
-                    name: getMsg(locale, 'embed_wind', 'Wind'),
-                    value: windValue,
-                    inline: true
-                },
-                {
-                    name: getMsg(locale, 'embed_pressure', 'Pressure'),
-                    value: weatherData.main && weatherData.main.pressure !== undefined
-                        ? (units === 'F'
-                            ? `${hpaToInHg(weatherData.main.pressure).toFixed(2)} inHg`
-                            : `${weatherData.main.pressure} hPa`)
-                        : getMsg(locale, 'embed_na', 'N/A'),
-                    inline: true
-                }
-            ],
-            thumbnail: weatherIcon ? { url: weatherIcon } : undefined
-        };
+        const embed = buildWeatherEmbed(weatherData, weatherReport, locationName, units, locale);
         await interaction.editReply({ embeds: [embed] });
     } catch (err) {
         log.error("Error in /weather handler", err);
