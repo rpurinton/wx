@@ -6,7 +6,7 @@
             "content": [
                 {
                     "type": "text",
-                    "text": "Using the given weather data: {weather_data};\nWrite a TV style weather narrative for {location_name}.\nUse units: {units}.\nWrite it in language locale: {locale}."
+                    "text": "Using the given weather data: {weather_data};\nWrite a TV style weather narrative for {location_name}.\nUse units: {units}.\nWrite it in language locale: {locale}.  The current time is {time_string}."
                 }
             ]
         }
