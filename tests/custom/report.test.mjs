@@ -3,14 +3,16 @@ import { createReportHelpers, fetchWeather, buildWeatherEmbed, resolveLocationAn
 
 describe('report.mjs', () => {
   describe('createReportHelpers', () => {
+    const mockLog = { debug: jest.fn(), warn: jest.fn(), error: jest.fn() };
     const deps = {
-      getLatLon: jest.fn().mockResolvedValue([1, 2, 'Testville', 'C']),
+      saveLatLon: jest.fn().mockResolvedValue([1, 2, 'Testville', 'C']),
       getWeatherData: jest.fn().mockResolvedValue({ main: { temp: 20, feels_like: 19, humidity: 50, pressure: 1013 }, wind: { speed: 2 }, weather: [{ description: 'clear', icon: '01d' }] }),
       getReport: jest.fn().mockResolvedValue('Weather is nice!'),
       msToMph: jest.fn((ms) => ms * 2.23694),
       msToKmh: jest.fn((ms) => ms * 3.6),
       hpaToInHg: jest.fn((hpa) => hpa * 0.02953),
-      getMsg: jest.fn((locale, key, fallback) => fallback)
+      getMsg: jest.fn((locale, key, fallback) => fallback),
+      log: mockLog
     };
     const helpers = createReportHelpers(deps);
 

@@ -1,25 +1,21 @@
 import { jest } from '@jest/globals';
-import { createOpenaiHelpers, getLatLon, getReport } from '../../src/custom/openai.mjs';
+import { getReport } from '../../src/custom/openai.mjs';
+
+// Mock log object
+const mockLog = { debug: jest.fn(), error: jest.fn() };
+
+// Patch global log for this test file if needed
+jest.unstable_mockModule('../../src/custom/report.mjs', () => ({
+  log: mockLog
+}));
 
 describe('openai.mjs', () => {
-  describe('createOpenaiHelpers', () => {
-    it('returns an object with getLatLon and getReport', () => {
-      const helpers = createOpenaiHelpers({
-        fs: { readFileSync: jest.fn().mockReturnValue('{"messages":[{"content":[{"text":""}]}]}') },
-        path: { join: jest.fn(() => 'locate.json') },
-        log: { debug: jest.fn(), error: jest.fn() },
-        OpenAI: jest.fn(),
-        getCurrentDirname: jest.fn()
-      });
-      expect(typeof helpers.getLatLon).toBe('function');
-      expect(typeof helpers.getReport).toBe('function');
-    });
-  });
-
   describe('named exports', () => {
-    it('getLatLon throws if no API key', async () => {
+    it('saveLatLon throws if no API key', async () => {
+      // Use dynamic import to allow mocking
       process.env.OPENAI_API_KEY = '';
-      await expect(getLatLon('London', 'en-US')).rejects.toThrow('OPENAI_API_KEY not set');
+      const { saveLatLon } = await import('../../src/custom/openai.mjs');
+      await expect(saveLatLon('London', 'en-US')).rejects.toThrow('OPENAI_API_KEY not set');
     });
     it('getReport throws if no API key', async () => {
       process.env.OPENAI_API_KEY = '';

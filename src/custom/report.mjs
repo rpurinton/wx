@@ -1,24 +1,27 @@
 // Helper methods for weather reporting and scheduled reports
-import { getLatLon } from './openai.mjs';
+import { saveLatLon } from './openai.mjs';
 import { getWeatherData } from './owm.mjs';
 import { getReport } from './openai.mjs';
 import { msToMph, msToKmh, hpaToInHg } from './convert.mjs';
 import { getMsg } from '../locales.mjs';
+import log from '../log.mjs';
 
 /**
  * Creates report helpers with injected dependencies for testability.
- * @param {{getLatLon: function, getWeatherData: function, getReport: function, msToMph: function, msToKmh: function, hpaToInHg: function, getMsg: function}} dependencies
+ * @param {{saveLatLon: function, getWeatherData: function, getReport: function, msToMph: function, msToKmh: function, hpaToInHg: function, getMsg: function}} dependencies
  * @returns {{resolveLocationAndUnits: function, fetchWeather: function, generateWeatherReport: function, buildWeatherEmbed: function}}
  */
 export function createReportHelpers({
-    getLatLon,
+    saveLatLon,
     getWeatherData,
     getReport,
     msToMph,
     msToKmh,
     hpaToInHg,
-    getMsg
+    getMsg,
+    log: injectedLog
 }) {
+    const logger = injectedLog || log;
     return {
         /**
          * Resolves location and units for a weather report.
@@ -28,10 +31,11 @@ export function createReportHelpers({
          * @returns {Promise<{lat: number, lon: number, locationName: string, units: string}>}
          */
         async resolveLocationAndUnits(location, locale, userUnits) {
-            const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
+            const [lat, lon, locationNameOrig, aiUnits, timezone] = await saveLatLon(location, locale);
+            logger.debug && logger.debug('AI returned timezone:', timezone);
             const locationName = locationNameOrig || location;
             const units = userUnits || aiUnits;
-            return { lat, lon, locationName, units };
+            return { lat, lon, locationName, units, timezone };
         },
 
         /**
@@ -53,8 +57,18 @@ export function createReportHelpers({
          * @param {string} locale
          * @returns {Promise<string|null>}
          */
-        async generateWeatherReport(weatherData, locationName, units, locale) {
-            return await getReport(weatherData, locationName, units, locale);
+        async generateWeatherReport(weatherData, locationName, units, locale, timezone) {
+            const report = await getReport(weatherData, locationName, units, locale, timezone);
+            if (logger.debug) {
+                let timeString;
+                try {
+                    timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                } catch (e) {
+                    timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                }
+                logger.debug('Calculated time string for report:', timeString);
+            }
+            return report;
         },
 
         /**
@@ -196,13 +210,24 @@ export function buildWeatherEmbed(weatherData, weatherReport, locationName, unit
 
 // Export resolveLocationAndUnits as a named export for compatibility with consumers and tests
 export async function resolveLocationAndUnits(location, locale, userUnits) {
-    const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
+    const [lat, lon, locationNameOrig, aiUnits, timezone] = await saveLatLon(location, locale);
+    log.debug && log.debug('AI returned timezone:', timezone);
     const locationName = locationNameOrig || location;
     const units = userUnits || aiUnits;
-    return { lat, lon, locationName, units };
+    return { lat, lon, locationName, units, timezone };
 }
 
 // Export generateWeatherReport as a named export for compatibility
-export async function generateWeatherReport(weatherData, locationName, units, locale) {
-    return await getReport(weatherData, locationName, units, locale);
+export async function generateWeatherReport(weatherData, locationName, units, locale, timezone) {
+    const report = await getReport(weatherData, locationName, units, locale, timezone);
+    if (log.debug) {
+        let timeString;
+        try {
+            timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        } catch (e) {
+            timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+        log.debug('Calculated time string for report:', timeString);
+    }
+    return report;
 }
