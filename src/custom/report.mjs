@@ -37,8 +37,6 @@ export function createReportHelpers({
             const [lat, lon, locationNameOrig, aiUnits, timezone] = arr;
             if (!timezone) {
                 logger.warn && logger.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
-            } else {
-                logger.debug && logger.debug('AI returned timezone:', timezone);
             }
             const locationName = locationNameOrig || location;
             const units = userUnits || aiUnits;
@@ -72,7 +70,6 @@ export function createReportHelpers({
                 try {
                     logger.debug('[generateWeatherReport] Calculating time string with', { locale, timezone });
                     timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-                    logger.debug('[generateWeatherReport] Calculated time string:', timeString);
                 } catch (e) {
                     logger.debug('[generateWeatherReport] Error with timezone, falling back to UTC', e);
                     timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -227,8 +224,6 @@ export async function resolveLocationAndUnits(location, locale, userUnits) {
     const [lat, lon, locationNameOrig, aiUnits, timezone] = arr;
     if (!timezone) {
         log.warn && log.warn('[resolveLocationAndUnits] No timezone returned from saveLatLon!', { result });
-    } else {
-        log.debug && log.debug('AI returned timezone:', timezone);
     }
     const locationName = locationNameOrig || location;
     const units = userUnits || aiUnits;
@@ -239,17 +234,5 @@ export async function resolveLocationAndUnits(location, locale, userUnits) {
 export async function generateWeatherReport(weatherData, locationName, units, locale, timezone) {
     log.debug && log.debug('[generateWeatherReport] Input timezone:', timezone, 'locale:', locale);
     const report = await getReport(weatherData, locationName, units, locale, timezone);
-    if (log.debug) {
-        let timeString;
-        try {
-            log.debug('[generateWeatherReport] Calculating time string with', { locale, timezone });
-            timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-            log.debug('[generateWeatherReport] Calculated time string:', timeString);
-        } catch (e) {
-            log.debug('[generateWeatherReport] Error with timezone, falling back to UTC', e);
-            timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-            log.debug('[generateWeatherReport] Fallback UTC time string:', timeString);
-        }
-    }
     return report;
 }
