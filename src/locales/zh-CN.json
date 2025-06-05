@@ -1,13 +1,14 @@
 {
-    "help": "**Wx 机器人 – 天气帮助**\n\n获取任何城市、地区或邮政编码的当前天气。\n\n**命令**  \n`/weather <location> [units]`\n\n**参数**  \n• `<location>` – 城市名称（例如：London）、地区（例如：CA）或邮政编码（例如：90210）。必填。\n• `[units]` – 可选。温度单位：华氏度 (F) 或摄氏度 (C)。\n\n**自动报告**  \n操作员可以通过在配置文件中指定 `channel_id`、位置和定时计划来配置自动报告。\n\n**示例**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx 机器人 – 天气帮助**\n\n获取任何城市、地区或邮政编码的当前天气。\n\n**命令**  \n`/weather <location> [units]`\n\n**参数**  \n• `<location>` – 城市名称（例如伦敦）、地区（例如 CA）或邮政编码（例如 90210）。必填。\n• `[units]` – 可选。温度单位：华氏度（F）或摄氏度（C）。\n\n**自动报告**  \n运营者可以通过在配置文件中指定 `channel_id`、位置和 cron 计划来配置自动报告。\n\n**示例**  \n```md\n/weather 东京\n/weather 纽约\n/weather 10001\n/weather 巴黎 C\n/weather \"旧金山\" F\n```",
     "commands_weather_noLocation": "请提供一个位置。",
     "commands_weather_invalidLocation": "提供的位置无效。",
     "commands_weather_error": "处理您的请求时发生错误。",
-    "commands_weather_embed_title": "{location} 的天气报告",
+    "commands_weather_embed_title": "{location} 天气报告",
     "commands_weather_embed_temp": "温度",
     "commands_weather_embed_feelslike": "体感温度",
     "commands_weather_embed_humidity": "湿度",
     "commands_weather_embed_condition": "天气状况",
     "commands_weather_embed_na": "无数据",
-    "commands_weather_embed_wind": "风"
+    "commands_weather_embed_wind": "风速",
+    "commands_weather_embed_pressure": "气压"
 }

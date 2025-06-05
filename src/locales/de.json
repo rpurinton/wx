@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Wetterhilfe**\n\nErhalten Sie die aktuelle Wetterlage für jede Stadt, Region oder Postleitzahl.\n\n**Befehl**  \n`/weather <Ort> [Einheiten]`\n\n**Parameter**  \n• `<Ort>` – Name einer Stadt (z. B. London), Region (z. B. CA) oder Postleitzahl (z. B. 90210). Erforderlich.\n• `[Einheiten]` – Optional. Temperatureinheiten: Fahrenheit (F) oder Celsius (C).\n\n**Automatisierte Berichte**  \nOperatoren können automatisierte Berichte konfigurieren, indem sie `channel_id`(s), Ort(e) und einen Cron-Zeitplan in den Konfigurationsdateien angeben.\n\n**Beispiele**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – Wetter Hilfe**\n\nErhalte die aktuelle Wettervorhersage für jede Stadt, Region oder Postleitzahl.\n\n**Befehl**  \n`/weather <Ort> [Einheiten]`\n\n**Parameter**  \n• `<Ort>` – Name einer Stadt (z.B. London), Region (z.B. CA) oder Postleitzahl (z.B. 90210). Erforderlich.\n• `[Einheiten]` – Optional. Temperatureinheiten: Fahrenheit (F) oder Celsius (C).\n\n**Automatisierte Berichte**  \nOperatoren können automatisierte Berichte konfigurieren, indem sie `channel_id`(s), Ort(e) und einen Cron-Plan in den Konfigurationsdateien angeben.\n\n**Beispiele**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Bitte geben Sie einen Ort an.",
     "commands_weather_invalidLocation": "Ungültiger Ort angegeben.",
-    "commands_weather_error": "Beim Verarbeiten Ihrer Anfrage ist ein Fehler aufgetreten.",
+    "commands_weather_error": "Bei der Verarbeitung Ihrer Anfrage ist ein Fehler aufgetreten.",
     "commands_weather_embed_title": "Wetterbericht für {location}",
     "commands_weather_embed_temp": "Temperatur",
     "commands_weather_embed_feelslike": "Gefühlte Temperatur",
     "commands_weather_embed_humidity": "Luftfeuchtigkeit",
     "commands_weather_embed_condition": "Wetterlage",
     "commands_weather_embed_na": "N/V",
-    "commands_weather_embed_wind": "Wind"
+    "commands_weather_embed_wind": "Wind",
+    "commands_weather_embed_pressure": "Luftdruck"
 }

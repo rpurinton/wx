@@ -1,5 +1,5 @@
 {
-    "help": "**Wx Bot – Bantuan Cuaca**\n\nDapatkan informasi cuaca terkini untuk kota, wilayah, atau kode pos manapun.\n\n**Perintah**  \n`/weather <lokasi> [satuan]`\n\n**Parameter**  \n• `<lokasi>` – Nama kota (misal London), wilayah (misal CA), atau kode pos (misal 90210). Wajib diisi.\n• `[satuan]` – Opsional. Satuan suhu: Fahrenheit (F) atau Celsius (C).\n\n**Laporan Otomatis**  \nOperator dapat mengatur laporan otomatis dengan menentukan `channel_id`(s), lokasi, dan jadwal cron dalam berkas konfigurasi.\n\n**Contoh**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – Bantuan Cuaca**\n\nDapatkan cuaca terkini untuk kota, wilayah, atau kode pos mana pun.\n\n**Perintah**  \n`/weather <lokasi> [satuan]`\n\n**Parameter**  \n• `<lokasi>` – Nama kota (misalnya London), wilayah (misalnya CA), atau kode pos (misalnya 90210). Wajib diisi.\n• `[satuan]` – Opsional. Satuan suhu: Fahrenheit (F) atau Celsius (C).\n\n**Laporan Otomatis**  \nOperator dapat mengonfigurasi laporan otomatis dengan menentukan `channel_id`(s), lokasi, dan jadwal cron dalam file konfigurasi.\n\n**Contoh**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Silakan berikan lokasi.",
     "commands_weather_invalidLocation": "Lokasi yang diberikan tidak valid.",
     "commands_weather_error": "Terjadi kesalahan saat memproses permintaan Anda.",
@@ -9,5 +9,6 @@
     "commands_weather_embed_humidity": "Kelembapan",
     "commands_weather_embed_condition": "Kondisi",
     "commands_weather_embed_na": "N/A",
-    "commands_weather_embed_wind": "Angin"
+    "commands_weather_embed_wind": "Angin",
+    "commands_weather_embed_pressure": "Tekanan"
 }

@@ -1,7 +1,7 @@
 {
-    "help": "**Wx Bot – Помощь по погоде**\n\nУзнайте текущую погоду для любого города, региона или почтового индекса.\n\n**Команда**  \n`/weather <место> [единицы]`\n\n**Параметры**  \n• `<место>` – Название города (например, London), региона (например, CA) или почтовый индекс (например, 90210). Обязательно.\n• `[единицы]` – Необязательно. Единицы температуры: Фаренгейт (F) или Цельсий (C).\n\n**Автоматизированные отчёты**  \nОператоры могут настраивать автоматические отчёты, указывая `channel_id`(ы), место(а) и расписание cron в конфигурационных файлах.\n\n**Примеры**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
-    "commands_weather_noLocation": "Пожалуйста, укажите место.",
-    "commands_weather_invalidLocation": "Указано недопустимое место.",
+    "help": "**Wx Bot – Помощь по погоде**\n\nПолучите текущую погоду для любого города, региона или почтового индекса.\n\n**Команда**  \n`/weather <место> [единицы]`\n\n**Параметры**  \n• `<место>` – Название города (например, London), региона (например, CA) или почтового индекса (например, 90210). Обязательно.\n• `[единицы]` – Необязательно. Единицы температуры: Фаренгейт (F) или Цельсий (C).\n\n**Автоматические отчёты**  \nОператоры могут настроить автоматические отчёты, указав `channel_id`(ы), место(а) и расписание cron в конфигурационных файлах.\n\n**Примеры**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Пожалуйста, укажите местоположение.",
+    "commands_weather_invalidLocation": "Указано недопустимое местоположение.",
     "commands_weather_error": "Произошла ошибка при обработке вашего запроса.",
     "commands_weather_embed_title": "Прогноз погоды для {location}",
     "commands_weather_embed_temp": "Температура",
@@ -9,5 +9,6 @@
     "commands_weather_embed_humidity": "Влажность",
     "commands_weather_embed_condition": "Состояние",
     "commands_weather_embed_na": "Н/Д",
-    "commands_weather_embed_wind": "Ветер"
+    "commands_weather_embed_wind": "Ветер",
+    "commands_weather_embed_pressure": "Давление"
 }

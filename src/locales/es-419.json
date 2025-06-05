@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Ayuda del Clima**\n\nObtén el clima actual para cualquier ciudad, región o código postal.\n\n**Comando**  \n`/weather <ubicación> [unidades]`\n\n**Parámetros**  \n• `<ubicación>` – Nombre de una ciudad (ej. Londres), región (ej. CA) o código postal (ej. 90210). Obligatorio.\n• `[unidades]` – Opcional. Unidades de temperatura: Fahrenheit (F) o Celsius (C).\n\n**Reportes Automatizados**  \nLos operadores pueden configurar reportes automatizados especificando `channel_id`(s), ubicación(es), y un cronograma cron en los archivos de configuración.\n\n**Ejemplos**  \n```md\n/weather Tokio\n/weather Nueva York\n/weather 10001\n/weather París C\n/weather \"San Francisco\" F\n```",
-    "commands_weather_noLocation": "Por favor proporciona una ubicación.",
-    "commands_weather_invalidLocation": "Ubicación proporcionada inválida.",
+    "help": "**Wx Bot – Ayuda del Clima**\n\nObtén el clima actual para cualquier ciudad, región o código postal.\n\n**Comando**  \n`/weather <ubicación> [unidades]`\n\n**Parámetros**  \n• `<ubicación>` – Nombre de una ciudad (por ejemplo, Londres), región (por ejemplo, CA) o código postal (por ejemplo, 90210). Requerido.\n• `[unidades]` – Opcional. Unidades de temperatura: Fahrenheit (F) o Celsius (C).\n\n**Informes Automáticos**  \nLos operadores pueden configurar informes automáticos especificando `channel_id`(s), ubicación(es) y un cron schedule en los archivos de configuración.\n\n**Ejemplos**  \n```md\n/weather Tokio\n/weather Nueva York\n/weather 10001\n/weather París C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Por favor, proporciona una ubicación.",
+    "commands_weather_invalidLocation": "Ubicación proporcionada no válida.",
     "commands_weather_error": "Ocurrió un error al procesar tu solicitud.",
-    "commands_weather_embed_title": "Reporte del clima para {location}",
+    "commands_weather_embed_title": "Reporte del Clima para {location}",
     "commands_weather_embed_temp": "Temperatura",
     "commands_weather_embed_feelslike": "Sensación Térmica",
     "commands_weather_embed_humidity": "Humedad",
     "commands_weather_embed_condition": "Condición",
     "commands_weather_embed_na": "N/D",
-    "commands_weather_embed_wind": "Viento"
+    "commands_weather_embed_wind": "Viento",
+    "commands_weather_embed_pressure": "Presión"
 }

@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Időjárás Segítség**\n\nKapja meg a jelenlegi időjárást bármely város, régió vagy irányítószám alapján.\n\n**Parancs**  \n`/weather <helyszín> [mértékegység]`\n\n**Paraméterek**  \n• `<helyszín>` – Város neve (pl. Budapest), régió (pl. CA) vagy irányítószám (pl. 90210). Kötelező.\n• `[mértékegység]` – Opcionális. Hőmérsékleti egységek: Fahrenheit (F) vagy Celsius (C).\n\n**Automatizált Jelentések**  \nAz operátorok konfigurálhatnak automatizált jelentéseket a `channel_id`(k), helyszín(ek) és cron ütemezés megadásával a konfigurációs fájlokban.\n\n**Példák**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
-    "commands_weather_noLocation": "Kérem, adjon meg egy helyszínt.",
+    "help": "**Wx Bot – Időjárás Segítség**\n\nSzerezze be az aktuális időjárást bármely város, régió vagy irányítószám szerint.\n\n**Parancs**  \n`/weather <helyszín> [egységek]`\n\n**Paraméterek**  \n• `<helyszín>` – Város neve (pl. London), régió (pl. CA) vagy irányítószám (pl. 90210). Kötelező.\n• `[egységek]` – Opcionális. Hőmérséklet egységek: Fahrenheit (F) vagy Celsius (C).\n\n**Automatizált Jelentések**  \nAz üzemeltetők beállíthatnak automatikus jelentéseket, ha megadják a `channel_id`(kat), helyszínt/helyszíneket és egy cron ütemezést a konfigurációs fájlokban.\n\n**Példák**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Kérjük, adjon meg egy helyszínt.",
     "commands_weather_invalidLocation": "Érvénytelen helyszín lett megadva.",
     "commands_weather_error": "Hiba történt a kérés feldolgozása során.",
-    "commands_weather_embed_title": "Időjárás jelentés ide: {location}",
+    "commands_weather_embed_title": "Időjárás jelentés innen: {location}",
     "commands_weather_embed_temp": "Hőmérséklet",
-    "commands_weather_embed_feelslike": "Érzett hőmérséklet",
+    "commands_weather_embed_feelslike": "Érezhető",
     "commands_weather_embed_humidity": "Páratartalom",
     "commands_weather_embed_condition": "Állapot",
     "commands_weather_embed_na": "N/A",
-    "commands_weather_embed_wind": "Szél"
+    "commands_weather_embed_wind": "Szél",
+    "commands_weather_embed_pressure": "Légnyomás"
 }

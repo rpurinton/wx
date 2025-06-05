@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Værhjelp**\n\nFå gjeldende vær for hvilken som helst by, region eller postnummer.\n\n**Kommando**  \n`/weather <sted> [enheter]`\n\n**Parametere**  \n• `<sted>` – Navn på en by (f.eks. London), region (f.eks. CA), eller postnummer (f.eks. 90210). Obligatorisk.\n• `[enheter]` – Valgfritt. Temperatur enheter: Fahrenheit (F) eller Celsius (C).\n\n**Automatiske rapporter**  \nOperatører kan konfigurere automatiske rapporter ved å spesifisere `channel_id`(er), sted(er) og en cron plan i konfigurasjonsfilene.\n\n**Eksempler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
-    "commands_weather_noLocation": "Vennligst oppgi et sted.",
-    "commands_weather_invalidLocation": "Ugyldig sted oppgitt.",
-    "commands_weather_error": "En feil oppstod under behandlingen av forespørselen din.",
-    "commands_weather_embed_title": "Værmelding for {location}",
+    "help": "**Wx Bot – Værhjelp**\n\nFå dagens vær for hvilken som helst by, region eller postnummer.\n\n**Kommando**  \n`/weather <location> [units]`\n\n**Parametere**  \n• `<location>` – Navn på en by (f.eks. London), region (f.eks. CA) eller postnummer (f.eks. 90210). Påkrevd.\n• `[units]` – Valgfritt. Temperatur enheter: Fahrenheit (F) eller Celsius (C).\n\n**Automatiske rapporter**  \nOperatører kan konfigurere automatiske rapporter ved å spesifisere `channel_id`(er), lokasjon(er) og en cron-plan i konfigurasjonsfilene.\n\n**Eksempler**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Vennligst oppgi en lokasjon.",
+    "commands_weather_invalidLocation": "Ugyldig lokasjon oppgitt.",
+    "commands_weather_error": "Det oppstod en feil under behandlingen av forespørselen din.",
+    "commands_weather_embed_title": "Værrapport for {location}",
     "commands_weather_embed_temp": "Temperatur",
-    "commands_weather_embed_feelslike": "Føles som",
-    "commands_weather_embed_humidity": "Fuktighet",
-    "commands_weather_embed_condition": "Værforhold",
-    "commands_weather_embed_na": "Ukjent",
-    "commands_weather_embed_wind": "Vind"
+    "commands_weather_embed_feelslike": "Føles Som",
+    "commands_weather_embed_humidity": "Luftfuktighet",
+    "commands_weather_embed_condition": "Forhold",
+    "commands_weather_embed_na": "N/A",
+    "commands_weather_embed_wind": "Vind",
+    "commands_weather_embed_pressure": "Trykk"
 }
