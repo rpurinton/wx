@@ -6,7 +6,7 @@
             "content": [
                 {
                     "type": "text",
-                    "text": "Given user_input: {user_input}\n- If user_input is numeric, assume it is a postal code.\n- Determine the latitude and longitude for user_input (4 decimal places).\n- Determine the formal place name (City, [State,] Country) and translate it to the specified locale: {locale}.\n- Identify the standard temperature units for this location (F or C).\n\nCall getLatLon with lat, lon, translated name, and units.\nIf the location cannot be determined, call error_function.\nCall only one function, not both."
+                    "text": "Given user_input: {user_input}\n- If user_input is numeric, assume it is a postal code.\n- Determine the latitude and longitude for user_input (4 decimal places).\n- Determine the formal place name (City, [State,] Country) and translate it to the specified locale: {locale}.\n- Identify the standard temperature units for this location (F or C).\n- Determine the IANA timezone name for this location (e.g., America/New_York).\n\nCall saveLatLon with lat, lon, translated name, units, and timezone.\nIf the location cannot be determined, call error_function.\nCall only one function, not both."
                 }
             ]
         }
@@ -18,15 +18,16 @@
         {
             "type": "function",
             "function": {
-                "name": "getLatLon",
-                "description": "Retrieves latitude and longitude for a given location name",
+                "name": "saveLatLon",
+                "description": "Delivers the latitude and longitude for a given location, along with its name, temperature units, and timezone.",
                 "parameters": {
                     "type": "object",
                     "required": [
                         "lat",
                         "lon",
                         "location_name",
-                        "units"
+                        "units",
+                        "timezone"
                     ],
                     "properties": {
                         "lat": {
@@ -48,6 +49,10 @@
                                 "C"
                             ],
                             "description": "Temperature units: F (Fahrenheit) or C (Celsius)"
+                        },
+                        "timezone": {
+                            "type": "string",
+                            "description": "IANA timezone name for the location, e.g., America/New_York"
                         }
                     },
                     "additionalProperties": false

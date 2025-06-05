@@ -36,20 +36,20 @@ export function createOpenaiHelpers({ fs, path, log, OpenAI, getCurrentDirname }
 
             const response = await openai.chat.completions.create(locateConfig);
             log.debug('OpenAI locate response', response);
-            // Parse and return [lat, lon, locationName] from response
+            // Parse and return [lat, lon, locationName, units, timezone] from response
             try {
                 const toolCalls = response.choices?.[0]?.message?.tool_calls;
                 if (toolCalls && toolCalls.length > 0) {
-                    const tool = toolCalls.find(tc => tc.type === 'function' && tc.function.name === 'getLatLon');
+                    const tool = toolCalls.find(tc => tc.type === 'function' && tc.function.name === 'saveLatLon');
                     if (tool) {
                         const args = JSON.parse(tool.function.arguments);
-                        return [args.lat, args.lon, args.location_name, args.units];
+                        return [args.lat, args.lon, args.location_name, args.units, args.timezone];
                     }
                 }
             } catch (err) {
                 log.error('Failed to parse OpenAI tool call response', err);
             }
-            return [null, null, null, null];
+            return [null, null, null, null, null];
         },
 
         /**
@@ -60,11 +60,18 @@ export function createOpenaiHelpers({ fs, path, log, OpenAI, getCurrentDirname }
          * @param {string} locale - The locale for the report (e.g., 'en-US')
          * @returns {Promise<string|null>}
          */
-        async getReport(weatherData, locationName, units, locale) {
+        async getReport(weatherData, locationName, units, locale, timezone) {
             const dirname = getCurrentDirname(import.meta);
             const reportPath = path.join(dirname, 'report.json');
             const reportConfig = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-            const timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            // Use the provided timezone for the time string
+            let timeString;
+            try {
+                timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            } catch (e) {
+                // fallback to UTC if timezone is invalid
+                timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+            }
             reportConfig.messages[0].content[0].text = reportConfig.messages[0].content[0].text
                 .replace('{weather_data}', JSON.stringify(weatherData))
                 .replace('{location_name}', locationName)
@@ -102,28 +109,35 @@ export async function getLatLon(location, locale) {
 
     const response = await openai.chat.completions.create(locateConfig);
     log.debug('OpenAI locate response', response);
-    // Parse and return [lat, lon, locationName] from response
+    // Parse and return [lat, lon, locationName, units, timezone] from response
     try {
         const toolCalls = response.choices?.[0]?.message?.tool_calls;
         if (toolCalls && toolCalls.length > 0) {
-            const tool = toolCalls.find(tc => tc.type === 'function' && tc.function.name === 'getLatLon');
+            const tool = toolCalls.find(tc => tc.type === 'function' && tc.function.name === 'saveLatLon');
             if (tool) {
                 const args = JSON.parse(tool.function.arguments);
-                return [args.lat, args.lon, args.location_name, args.units];
+                return [args.lat, args.lon, args.location_name, args.units, args.timezone];
             }
         }
     } catch (err) {
         log.error('Failed to parse OpenAI tool call response', err);
     }
-    return [null, null, null, null];
+    return [null, null, null, null, null];
 }
 
 // Export getReport as a named export for compatibility
-export async function getReport(weatherData, locationName, units, locale) {
+export async function getReport(weatherData, locationName, units, locale, timezone) {
     const dirname = getCurrentDirname(import.meta);
     const reportPath = path.join(dirname, 'report.json');
     const reportConfig = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-    const timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    // Use the provided timezone for the time string
+    let timeString;
+    try {
+        timeString = new Date().toLocaleString(locale, { timeZone: timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+        // fallback to UTC if timezone is invalid
+        timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
     reportConfig.messages[0].content[0].text = reportConfig.messages[0].content[0].text
         .replace('{weather_data}', JSON.stringify(weatherData))
         .replace('{location_name}', locationName)
