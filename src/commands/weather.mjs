@@ -26,46 +26,66 @@ export default async function (interaction) {
             });
             return;
         }
+
+        // Initial progress embed
+        const progressEmbed = {
+            color: 0x808080, // gray
+            description: [
+                getMsg(locale, 'embed_getting_location', '⏳ Getting location data...'),
+                getMsg(locale, 'embed_getting_weather', '⏳ Getting weather data...'),
+                getMsg(locale, 'embed_generating_report', '⏳ Generating report...')
+            ].join('\n')
+        };
+        await interaction.reply({ embeds: [progressEmbed], flags: 1 << 6 });
+
+        // Step 1: Get location data
         const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
         let locationName = locationNameOrig;
         let units = userUnits || aiUnits;
-        log.debug("Location result", { lat, lon, locationName, units });
+        let progressLines = [
+            getMsg(locale, 'embed_getting_location_ok', '✅ Getting location data... OK!'),
+            getMsg(locale, 'embed_getting_weather', '⏳ Getting weather data...'),
+            getMsg(locale, 'embed_generating_report', '⏳ Generating report...')
+        ];
+        await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!lat || !lon) {
-            log.warn("Failed to get lat/lon for location", { location, lat, lon });
             await interaction.editReply({
-                content: getMsg(locale, 'commands_weather_invalidLocation', 'Invalid location provided.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'noLocation', 'Please provide a location.'),
+                embeds: [],
+                flags: 1 << 6
             });
             return;
         }
-        if (!locationName) {
-            log.warn("No location name found, using input as fallback", { locationName });
-            locationName = location;
-        }
-        // get weather data from openweathermap (set OWM_API_KEY in .env)
+        if (!locationName) locationName = location;
+
+        // Step 2: Get weather data
         const weatherData = await getWeatherData(lat, lon, units);
-        log.debug("Weather data", weatherData);
+        progressLines[1] = getMsg(locale, 'embed_getting_weather_ok', '✅ Getting weather data... OK!');
+        await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherData) {
-            log.error("Failed to get weather data", { lat, lon });
             await interaction.editReply({
-                content: getMsg(locale, 'commands_weather_error', 'Failed to retrieve weather data.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'error', 'Failed to retrieve weather data.'),
+                embeds: [],
+                flags: 1 << 6
             });
             return;
         }
-        // get weather report from openai
+
+        // Step 3: Get weather report
         const weatherReport = await getReport(weatherData, locationName, units, locale);
-        log.debug("Weather report", weatherReport);
+        progressLines[2] = getMsg(locale, 'embed_generating_report_ok', '✅ Generating report... OK!');
+        await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherReport) {
-            log.error("Failed to get weather report", { locationName });
             await interaction.editReply({
-                content: getMsg(locale, 'commands_weather_error', 'Failed to generate weather report.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'error', 'Failed to generate weather report.'),
+                embeds: [],
+                flags: 1 << 6
             });
             return;
         }
-        // reply with a Discord embed
-        let windValue = getMsg(locale, 'commands_weather_embed_na', 'N/A');
+
+        // Final weather embed (replace progress)
+        let windValue = getMsg(locale, 'embed_na', 'N/A');
         if (weatherData.wind && weatherData.wind.speed !== undefined) {
             if (units === 'F') {
                 windValue = `${msToMph(weatherData.wind.speed).toFixed(1)} mph`;
@@ -79,45 +99,44 @@ export default async function (interaction) {
             ? `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
             : null;
         const embed = {
-            title: getMsg(locale, 'commands_weather_embed_title', `Weather Report for ${locationName}`)
-                .replace('{location}', locationName),
+            title: getMsg(locale, 'embed_title', `Weather Report for ${locationName}`).replace('{location}', locationName),
             color: 0x808080, // gray
             description: weatherReport,
             fields: [
                 {
-                    name: getMsg(locale, 'commands_weather_embed_temp', 'Temperature'),
+                    name: getMsg(locale, 'embed_temp', 'Temperature'),
                     value: `${weatherData.main.temp}°${units}`,
                     inline: true
                 },
                 {
-                    name: getMsg(locale, 'commands_weather_embed_feelslike', 'Feels Like'),
+                    name: getMsg(locale, 'embed_feelslike', 'Feels Like'),
                     value: `${weatherData.main.feels_like}°${units}`,
                     inline: true
                 },
                 {
-                    name: getMsg(locale, 'commands_weather_embed_humidity', 'Humidity'),
+                    name: getMsg(locale, 'embed_humidity', 'Humidity'),
                     value: `${weatherData.main.humidity}%`,
                     inline: true
                 },
                 {
-                    name: getMsg(locale, 'commands_weather_embed_condition', 'Condition'),
+                    name: getMsg(locale, 'embed_condition', 'Condition'),
                     value: weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description
                         ? weatherData.weather[0].description
-                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
+                        : getMsg(locale, 'embed_na', 'N/A'),
                     inline: true
                 },
                 {
-                    name: getMsg(locale, 'commands_weather_embed_wind', 'Wind'),
+                    name: getMsg(locale, 'embed_wind', 'Wind'),
                     value: windValue,
                     inline: true
                 },
                 {
-                    name: getMsg(locale, 'commands_weather_embed_pressure', 'Pressure'),
+                    name: getMsg(locale, 'embed_pressure', 'Pressure'),
                     value: weatherData.main && weatherData.main.pressure !== undefined
                         ? (units === 'F'
                             ? `${hpaToInHg(weatherData.main.pressure).toFixed(2)} inHg`
                             : `${weatherData.main.pressure} hPa`)
-                        : getMsg(locale, 'commands_weather_embed_na', 'N/A'),
+                        : getMsg(locale, 'embed_na', 'N/A'),
                     inline: true
                 }
             ],
