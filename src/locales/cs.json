@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Pomoc s počasím**\n\nZískejte aktuální počasí pro jakékoli město, region nebo PSČ.\n\n**Příkaz**  \n`/weather <lokace> [jednotky]`\n\n**Parametry**  \n• `<lokace>` – Název města (např. Londýn), regionu (např. CA) nebo PSČ (např. 90210). Povinné.\n• `[jednotky]` – Volitelné. Jednotky teploty: Fahrenheit (F) nebo Celsius (C).\n\n**Automatické zprávy**  \nOperátoři mohou konfigurovat automatické zprávy určením `channel_id`(ů), lokaci, a rozvrhu pomocí cron v konfiguračních souborech.\n\n**Příklady**  \n```md\n/weather Tokio\n/weather New York\n/weather 10001\n/weather Paříž C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – Pomoc s počasím**\n\nZískat aktuální počasí pro jakékoli město, region nebo PSČ.\n\n**Příkaz**  \n`/weather <location> [units]`\n\n**Parametry**  \n• `<location>` – Název města (např. Londýn), regionu (např. CA) nebo PSČ (např. 90210). Povinné.\n• `[units]` – Nepovinné. Jednotky teploty: Fahrenheit (F) nebo Celsius (C).\n\n**Automatické zprávy**  \nOperátoři mohou nastavit automatické zprávy zadáním `channel_id`(ů), lokací a cron plánu v konfiguračních souborech.\n\n**Příklady**  \n```md\n/weather Tokio\n/weather New York\n/weather 10001\n/weather Paříž C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Prosím, zadejte lokaci.",
-    "commands_weather_invalidLocation": "Byla zadána neplatná lokace.",
-    "commands_weather_error": "Při zpracování vašeho požadavku došlo k chybě.",
+    "commands_weather_invalidLocation": "Byla zadána neplatná lokalita.",
+    "commands_weather_error": "Při zpracování vaší žádosti došlo k chybě.",
     "commands_weather_embed_title": "Počasí pro {location}",
     "commands_weather_embed_temp": "Teplota",
-    "commands_weather_embed_feelslike": "Pocitová teplota",
+    "commands_weather_embed_feelslike": "Pociťováno jako",
     "commands_weather_embed_humidity": "Vlhkost",
     "commands_weather_embed_condition": "Podmínky",
-    "commands_weather_embed_na": "Není k dispozici",
-    "commands_weather_embed_wind": "Vítr"
+    "commands_weather_embed_na": "N/D",
+    "commands_weather_embed_wind": "Vítr",
+    "commands_weather_embed_pressure": "Tlak"
 }

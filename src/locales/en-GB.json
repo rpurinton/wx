@@ -1,5 +1,5 @@
 {
-    "help": "**Wx Bot – Weather Help**\n\nGet the current weather for any city, region, or postcode.\n\n**Command**  \n`/weather <location> [units]`\n\n**Parameters**  \n• `<location>` – Name of a city (e.g. London), region (e.g. CA), or postcode (e.g. SW1A 1AA). Required.\n• `[units]` – Optional. Temperature units: Fahrenheit (F) or Celsius (C).\n\n**Automated Reports**  \nOperators can configure automated reports by specifying `channel_id`(s), location(s), and a cron schedule in the config files.\n\n**Examples**  \n```md\n/weather Tokyo\n/weather London\n/weather SW1A 1AA\n/weather Paris C\n/weather \"Edinburgh\" F\n```",
+    "help": "**Wx Bot – Weather Help**\n\nGet the current weather for any city, region, or postcode.\n\n**Command**  \n`/weather <location> [units]`\n\n**Parameters**  \n• `<location>` – Name of a city (e.g. London), region (e.g. CA), or postcode (e.g. SW1A 1AA). Required.\n• `[units]` – Optional. Temperature units: Fahrenheit (F) or Celsius (C).\n\n**Automated Reports**  \nOperators can configure automated reports by specifying `channel_id`(s), location(s), and a cron schedule in the config files.\n\n**Examples**  \n```md\n/weather Tokyo\n/weather New York\n/weather SW1A 1AA\n/weather Paris C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Please provide a location.",
     "commands_weather_invalidLocation": "Invalid location provided.",
     "commands_weather_error": "An error occurred while processing your request.",
@@ -9,5 +9,6 @@
     "commands_weather_embed_humidity": "Humidity",
     "commands_weather_embed_condition": "Condition",
     "commands_weather_embed_na": "N/A",
-    "commands_weather_embed_wind": "Wind"
+    "commands_weather_embed_wind": "Wind",
+    "commands_weather_embed_pressure": "Pressure"
 }

@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – ความช่วยเหลือเกี่ยวกับสภาพอากาศ**\n\nรับข้อมูลสภาพอากาศปัจจุบันสำหรับเมือง, ภูมิภาค หรือรหัสไปรษณีย์ใด ๆ\n\n**คำสั่ง**  \n`/weather <location> [units]`\n\n**พารามิเตอร์**  \n• `<location>` – ชื่อเมือง (เช่น London), ภูมิภาค (เช่น CA) หรือรหัสไปรษณีย์ (เช่น 90210) จำเป็นต้องระบุ\n• `[units]` – ตัวเลือกหน่วยอุณหภูมิ: ฟาเรนไฮต์ (F) หรือเซลเซียส (C)\n\n**รายงานอัตโนมัติ**  \nผู้ดูแลระบบสามารถตั้งค่ารายงานอัตโนมัติโดยระบุ `channel_id`(s), สถานที่ และตารางเวลาครอนในไฟล์ config\n\n**ตัวอย่าง**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – ความช่วยเหลือเกี่ยวกับสภาพอากาศ**\n\nรับสภาพอากาศปัจจุบันสำหรับเมือง, ภูมิภาค หรือรหัสไปรษณีย์ใดก็ได้\n\n**คำสั่ง**  \n`/weather <location> [units]`\n\n**พารามิเตอร์**  \n• `<location>` – ชื่อเมือง (เช่น London), ภูมิภาค (เช่น CA) หรือรหัสไปรษณีย์ (เช่น 90210) จำเป็นต้องระบุ\n• `[units]` – ตัวเลือก อุณหภูมิหน่วย: ฟาเรนไฮต์ (F) หรือ เซลเซียส (C)\n\n**รายงานอัตโนมัติ**  \nผู้ปฏิบัติงานสามารถตั้งค่ารายงานอัตโนมัติโดยระบุ `channel_id`(s), สถานที่, และตารางเวลาครอนในไฟล์กำหนดค่า\n\n**ตัวอย่าง**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "กรุณาระบุสถานที่",
-    "commands_weather_invalidLocation": "สถานที่ที่ระบุไม่ถูกต้อง",
+    "commands_weather_invalidLocation": "สถานที่ที่ให้มาไม่ถูกต้อง",
     "commands_weather_error": "เกิดข้อผิดพลาดขณะประมวลผลคำขอของคุณ",
     "commands_weather_embed_title": "รายงานสภาพอากาศสำหรับ {location}",
     "commands_weather_embed_temp": "อุณหภูมิ",
-    "commands_weather_embed_feelslike": "ความรู้สึกเหมือน",
+    "commands_weather_embed_feelslike": "รู้สึกเหมือน",
     "commands_weather_embed_humidity": "ความชื้น",
-    "commands_weather_embed_condition": "สภาพ",
+    "commands_weather_embed_condition": "สภาพอากาศ",
     "commands_weather_embed_na": "ไม่มีข้อมูล",
-    "commands_weather_embed_wind": "ลม"
+    "commands_weather_embed_wind": "ลม",
+    "commands_weather_embed_pressure": "ความกดอากาศ"
 }

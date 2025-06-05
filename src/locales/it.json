@@ -1,5 +1,5 @@
 {
-    "help": "**Wx Bot – Aiuto Meteo**\n\nOttieni il meteo attuale per qualsiasi città, regione o codice postale.\n\n**Comando**  \n`/weather <location> [units]`\n\n**Parametri**  \n• `<location>` – Nome di una città (ad es. Londra), regione (ad es. CA) o codice postale (ad es. 90210). Obbligatorio.\n• `[units]` – Opzionale. Unità di temperatura: Fahrenheit (F) o Celsius (C).\n\n**Report Automatici**  \nGli operatori possono configurare report automatici specificando `channel_id`(s), localizzazione(i) e un programma cron nei file di configurazione.\n\n**Esempi**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – Aiuto Meteo**\n\nOttieni il meteo attuale per qualsiasi città, regione o CAP.\n\n**Comando**  \n`/weather <location> [units]`\n\n**Parametri**  \n• `<location>` – Nome di una città (es. Londra), regione (es. CA) o codice postale (es. 90210). Obbligatorio.\n• `[units]` – Opzionale. Unità di temperatura: Fahrenheit (F) o Celsius (C).\n\n**Report automatici**  \nGli operatori possono configurare report automatici specificando `channel_id`(s), ubicazione(i) e una pianificazione cron nei file di configurazione.\n\n**Esempi**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Parigi C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Per favore fornisci una località.",
     "commands_weather_invalidLocation": "Località fornita non valida.",
     "commands_weather_error": "Si è verificato un errore durante l'elaborazione della tua richiesta.",
@@ -9,5 +9,6 @@
     "commands_weather_embed_humidity": "Umidità",
     "commands_weather_embed_condition": "Condizione",
     "commands_weather_embed_na": "N/D",
-    "commands_weather_embed_wind": "Vento"
+    "commands_weather_embed_wind": "Vento",
+    "commands_weather_embed_pressure": "Pressione"
 }

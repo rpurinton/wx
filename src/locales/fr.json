@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Aide Météo**\n\nObtenez la météo actuelle pour n'importe quelle ville, région ou code postal.\n\n**Commande**  \n`/weather <emplacement> [unités]`\n\n**Paramètres**  \n• `<emplacement>` – Nom d'une ville (ex. Paris), région (ex. CA), ou code postal (ex. 75001). Obligatoire.\n• `[unités]` – Optionnel. Unités de température : Fahrenheit (F) ou Celsius (C).\n\n**Rapports Automatisés**  \nLes opérateurs peuvent configurer des rapports automatisés en spécifiant `channel_id`(s), emplacement(s), et un horaire cron dans les fichiers de configuration.\n\n**Exemples**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "help": "**Wx Bot – Aide Météo**\n\nObtenez la météo actuelle pour n'importe quelle ville, région ou code postal.\n\n**Commande**  \n`/weather <emplacement> [unités]`\n\n**Paramètres**  \n• `<emplacement>` – Nom d'une ville (ex. Paris), région (ex. CA) ou code postal (ex. 75001). Requis.\n• `[unités]` – Optionnel. Unités de température : Fahrenheit (F) ou Celsius (C).\n\n**Rapports Automatisés**  \nLes opérateurs peuvent configurer des rapports automatisés en spécifiant `channel_id`(s), emplacement(s) et un calendrier cron dans les fichiers de configuration.\n\n**Exemples**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
     "commands_weather_noLocation": "Veuillez fournir un emplacement.",
-    "commands_weather_invalidLocation": "Emplacement fourni invalide.",
-    "commands_weather_error": "Une erreur est survenue lors du traitement de votre demande.",
+    "commands_weather_invalidLocation": "Emplacement invalide fourni.",
+    "commands_weather_error": "Une erreur s'est produite lors du traitement de votre demande.",
     "commands_weather_embed_title": "Rapport Météo pour {location}",
     "commands_weather_embed_temp": "Température",
     "commands_weather_embed_feelslike": "Ressenti",
     "commands_weather_embed_humidity": "Humidité",
     "commands_weather_embed_condition": "Condition",
     "commands_weather_embed_na": "N/D",
-    "commands_weather_embed_wind": "Vent"
+    "commands_weather_embed_wind": "Vent",
+    "commands_weather_embed_pressure": "Pression"
 }

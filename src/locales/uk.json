@@ -1,13 +1,14 @@
 {
-    "help": "**Wx Bot – Допомога по погоді**\n\nОтримайте актуальний прогноз погоди для будь-якого міста, регіону чи поштового індексу.\n\n**Команда**  \n`/weather <location> [units]`\n\n**Параметри**  \n• `<location>` – Назва міста (наприклад, London), регіону (наприклад, CA) або поштовий індекс (наприклад, 90210). Обов’язково до вказання.\n• `[units]` – Опціонально. Одиниці температури: Фаренгейти (F) або Цельсій (C).\n\n**Автоматичні звіти**  \nОператори можуть налаштовувати автоматичні звіти, вказуючи `channel_id`(и), локації та cron-розклад у конфігураційних файлах.\n\n**Приклади**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
-    "commands_weather_noLocation": "Будь ласка, вкажіть місце розташування.",
-    "commands_weather_invalidLocation": "Вказано недійсне місце розташування.",
-    "commands_weather_error": "Виникла помилка під час обробки вашого запиту.",
+    "help": "**Wx Bot – Допомога по Погоді**\n\nОтримайте поточну погоду для будь-якого міста, регіону або поштового індексу.\n\n**Команда**  \n`/weather <location> [units]`\n\n**Параметри**  \n• `<location>` – Назва міста (наприклад, London), регіону (наприклад, CA) або поштовий індекс (наприклад, 90210). Обов’язково.\n• `[units]` – Необов’язково. Одиниці температури: Фаренгейти (F) або Цельсій (C).\n\n**Автоматичні звіти**  \nОператори можуть налаштовувати автоматичні звіти, вказуючи `channel_id`(и), місце(а) та розклад за cron у файлах конфігурації.\n\n**Приклади**  \n```md\n/weather Tokyo\n/weather New York\n/weather 10001\n/weather Paris C\n/weather \"San Francisco\" F\n```",
+    "commands_weather_noLocation": "Будь ласка, вкажіть місцезнаходження.",
+    "commands_weather_invalidLocation": "Вказано недійсне місцезнаходження.",
+    "commands_weather_error": "Під час обробки вашого запиту сталася помилка.",
     "commands_weather_embed_title": "Прогноз погоди для {location}",
     "commands_weather_embed_temp": "Температура",
     "commands_weather_embed_feelslike": "Відчувається як",
     "commands_weather_embed_humidity": "Вологість",
     "commands_weather_embed_condition": "Стан",
     "commands_weather_embed_na": "Н/Д",
-    "commands_weather_embed_wind": "Вітер"
+    "commands_weather_embed_wind": "Вітер",
+    "commands_weather_embed_pressure": "Тиск"
 }
