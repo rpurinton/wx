@@ -137,3 +137,6 @@ dist
 
 # jest
 .jest.result
+
+# cron config
+cron.json
