@@ -21,7 +21,7 @@ export async function saveLatLon(location, locale) {
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) throw new Error('OPENAI_API_KEY not set');
     const openai = new OpenAI({ apiKey });
-
+    log.debug('OpenAI locate config', locateConfig);
     const response = await openai.chat.completions.create(locateConfig);
     log.debug('OpenAI locate response', response);
     // Parse and return [lat, lon, locationName, units, timezone] from response
@@ -69,7 +69,7 @@ export async function getReport(weatherData, locationName, units, locale, timezo
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) throw new Error('OPENAI_API_KEY not set');
     const openai = new OpenAI({ apiKey });
-
+    log.debug('OpenAI report config', reportConfig);
     const response = await openai.chat.completions.create(reportConfig);
     log.debug('OpenAI report response', response);
     try {
