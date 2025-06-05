@@ -123,11 +123,13 @@ export async function getReport(weatherData, locationName, units, locale) {
     const dirname = getCurrentDirname(import.meta);
     const reportPath = path.join(dirname, 'report.json');
     const reportConfig = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    const timeString = new Date().toLocaleString(locale, { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     reportConfig.messages[0].content[0].text = reportConfig.messages[0].content[0].text
         .replace('{weather_data}', JSON.stringify(weatherData))
         .replace('{location_name}', locationName)
         .replace('{units}', units)
-        .replace('{locale}', locale);
+        .replace('{locale}', locale)
+        .replace('{time_string}', timeString);
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) throw new Error('OPENAI_API_KEY not set');
     const openai = new OpenAI({ apiKey });
