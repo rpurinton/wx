@@ -29,7 +29,6 @@ export default async function (
         });
         const location = interaction.options.getString('location') || null;
         const userUnits = interaction.options.getString('units') || null;
-        logDep.debug("Location", location);
         if (!location) {
             logDep.warn("No location provided for weather command");
             await interaction.reply({
@@ -51,7 +50,6 @@ export default async function (
 
         // Step 1: Get location data
         const { lat, lon, locationName, units, timezone } = await resolveLocationAndUnitsDep(location, locale, userUnits);
-        logDep.debug("Resolved timezone for report", timezone);
         let progressLines = [
             getMsgDep(locale, 'embed_getting_location_ok', '✅ Getting location data... OK!'),
             getMsgDep(locale, 'embed_getting_weather', '⏳ Getting weather data...'),
