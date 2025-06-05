@@ -21,7 +21,7 @@ export default async function (interaction) {
         if (!location) {
             log.warn("No location provided for weather command");
             await interaction.editReply({
-                content: getMsg(locale, 'commands_weather_noLocation', 'Please provide a location.'),
+                content: getMsg(locale, 'noLocation', 'Please provide a location.'),
                 flags: 1 << 6 // Ephemeral
             });
             return;
@@ -49,10 +49,10 @@ export default async function (interaction) {
         ];
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!lat || !lon) {
+            log.warn("Failed to get lat/lon for location", { location, lat, lon });
             await interaction.editReply({
-                content: getMsg(locale, 'noLocation', 'Please provide a location.'),
-                embeds: [],
-                flags: 1 << 6
+                content: getMsg(locale, 'invalidLocation', 'Invalid location provided.'),
+                flags: 1 << 6 // Ephemeral
             });
             return;
         }
@@ -63,10 +63,10 @@ export default async function (interaction) {
         progressLines[1] = getMsg(locale, 'embed_getting_weather_ok', '✅ Getting weather data... OK!');
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherData) {
+            log.error("Failed to get weather data", { lat, lon });
             await interaction.editReply({
                 content: getMsg(locale, 'error', 'Failed to retrieve weather data.'),
-                embeds: [],
-                flags: 1 << 6
+                flags: 1 << 6 // Ephemeral
             });
             return;
         }
@@ -76,10 +76,10 @@ export default async function (interaction) {
         progressLines[2] = getMsg(locale, 'embed_generating_report_ok', '✅ Generating report... OK!');
         await interaction.editReply({ embeds: [{ color: 0x808080, description: progressLines.join('\n') }] });
         if (!weatherReport) {
+            log.error("Failed to get weather report", { locationName });
             await interaction.editReply({
                 content: getMsg(locale, 'error', 'Failed to generate weather report.'),
-                embeds: [],
-                flags: 1 << 6
+                flags: 1 << 6 // Ephemeral
             });
             return;
         }
@@ -147,7 +147,7 @@ export default async function (interaction) {
         log.error("Error in /weather handler", err);
         try {
             await interaction.editReply({
-                content: getMsg('en-US', 'commands_weather_error', 'An error occurred while processing your request.'),
+                content: getMsg('en-US', 'error', 'An error occurred while processing your request.'),
                 flags: 1 << 6 // Ephemeral
             });
         } catch (e) {
