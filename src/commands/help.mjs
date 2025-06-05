@@ -1,31 +1,24 @@
-import log from '../log.mjs';
-import { getMsg } from '../locales.mjs';
+import log from "../log.mjs";
+import { getMsg } from "../locales.mjs";
 
-// Command handler for /help
-export default async function (interaction) {
+// Refactor for DI: add dependencies as the second argument
+export default async function (interaction, { logDep = log, getMsgDep = getMsg } = {}) {
     try {
-        const helpContent = getMsg(interaction.locale, "help", "No help available for this command.");
+        const helpContent = getMsgDep(interaction.locale, "help", "No help available for this command.");
         await interaction.reply({
             content: helpContent,
             flags: 1 << 6, // EPHEMERAL
         });
     } catch (err) {
-        log.error("Error in /help handler", {
-            errorMessage: err && err.message,
-            errorStack: err && err.stack,
-            errorObj: err
-        });
         try {
+            logDep.error("Error in /help handler", err);
+            const msgContent = getMsgDep(interaction.locale, "error", "An error occurred while processing your request.");
             await interaction.reply({
-                content: "An error occurred while processing your request.",
+                content: msgContent,
                 flags: 1 << 6,
             });
         } catch (e) {
-            log.error("Failed to reply with error message", {
-                errorMessage: e && e.message,
-                errorStack: e && e.stack,
-                errorObj: e
-            });
+            logDep.error("Failed to reply with error message", e);
         }
     }
 }
