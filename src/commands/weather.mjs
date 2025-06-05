@@ -8,7 +8,7 @@ import { msToMph, msToKmh, hpaToInHg } from '../custom/convert.mjs';
 export default async function (interaction) {
     try {
         log.debug("Weather command interaction", interaction);
-        await interaction.deferReply();
+        // Remove deferReply, use reply for the initial progress embed
         const locale = interaction.guildLocale || interaction.locale || 'en-US';
         log.debug("Locales", {
             interactionLocale: interaction.locale,
@@ -20,9 +20,8 @@ export default async function (interaction) {
         log.debug("Location", location);
         if (!location) {
             log.warn("No location provided for weather command");
-            await interaction.editReply({
-                content: getMsg(locale, 'noLocation', 'Please provide a location.'),
-                flags: 1 << 6 // Ephemeral
+            await interaction.reply({
+                content: getMsg(locale, 'noLocation', 'Please provide a location.')
             });
             return;
         }
@@ -36,7 +35,7 @@ export default async function (interaction) {
                 getMsg(locale, 'embed_generating_report', '⏳ Generating report...')
             ].join('\n')
         };
-        await interaction.reply({ embeds: [progressEmbed], flags: 1 << 6 });
+        await interaction.reply({ embeds: [progressEmbed] });
 
         // Step 1: Get location data
         const [lat, lon, locationNameOrig, aiUnits] = await getLatLon(location, locale);
@@ -51,8 +50,7 @@ export default async function (interaction) {
         if (!lat || !lon) {
             log.warn("Failed to get lat/lon for location", { location, lat, lon });
             await interaction.editReply({
-                content: getMsg(locale, 'invalidLocation', 'Invalid location provided.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'invalidLocation', 'Invalid location provided.')
             });
             return;
         }
@@ -65,8 +63,7 @@ export default async function (interaction) {
         if (!weatherData) {
             log.error("Failed to get weather data", { lat, lon });
             await interaction.editReply({
-                content: getMsg(locale, 'error', 'Failed to retrieve weather data.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'error', 'Failed to retrieve weather data.')
             });
             return;
         }
@@ -78,8 +75,7 @@ export default async function (interaction) {
         if (!weatherReport) {
             log.error("Failed to get weather report", { locationName });
             await interaction.editReply({
-                content: getMsg(locale, 'error', 'Failed to generate weather report.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg(locale, 'error', 'Failed to generate weather report.')
             });
             return;
         }
@@ -147,8 +143,7 @@ export default async function (interaction) {
         log.error("Error in /weather handler", err);
         try {
             await interaction.editReply({
-                content: getMsg('en-US', 'error', 'An error occurred while processing your request.'),
-                flags: 1 << 6 // Ephemeral
+                content: getMsg('en-US', 'error', 'An error occurred while processing your request.')
             });
         } catch (e) {
             log.error("Failed to reply with error message", e);
